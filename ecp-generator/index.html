@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #222;
+            color: #fff;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        h1 {
+            font-size: 24px;
+        }
+
+        #generate-button {
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        #loading {
+            display: none;
+        }
+
+        #buy-ecp {
+            display: none;
+            color: #3498db;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+
+        #poor-guy {
+            display: none;
+            color: #fff;
+            padding: 30px 50px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Free ECP Generator</h1>
+    <button id="generate-button" onclick="generateECP()">Generate ECP</button>
+    <div id="loading">
+        <img src="https://media4.giphy.com/media/uIJBFZoOaifHf52MER/giphy.gif?cid=ecf05e475ehu1acb88cld5mghj8fpsyjppbptdjaguofurfd&ep=v1_gifs_search&rid=giphy.gif" alt="Loading Animation">
+    </div>
+    <div id="buy-ecp" onclick="redirectToECP()">
+        Buy an ECP here.
+    </div>
+
+    <div id="poor-guy">
+        Poor little Guy really thought he gets a free ECP.
+    </div>
+
+    <script>
+        function generateECP() {
+            document.getElementById('generate-button').style.display = 'none';
+            document.getElementById('loading').style.display = 'block';
+
+            setTimeout(function () {
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('buy-ecp').style.display = 'block';
+                document.getElementById('poor-guy').style.display = 'block';
+            }, 3000);
+        }
+
+        function redirectToECP() {
+            window.location.href = 'https://neuronality.itch.io/starblast';
+        }
+    </script>
+</body>
+</html>
