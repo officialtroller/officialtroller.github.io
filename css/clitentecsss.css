@@ -273,6 +273,14 @@ a:visited {
 #donate:hover i,
 #rankings:hover i,
 #training:hover i {
+    filter: blur(0px);
+    transition: .5s ease;
+}
+
+#moddingspace i,
+#donate i,
+#rankings i,
+#training i {
     filter: blur(4px);
     transition: .5s ease;
 }
@@ -281,7 +289,16 @@ a:visited {
 #donate:hover span,
 #rankings:hover span,
 #training:hover span {
-    filter: blur(0);
+    filter: none;
+}
+
+
+#moddingspace span,
+#donate span,
+#rankings span,
+#training span {
+    filter: blur(4px);
+    transition: filter 0.5s ease;
 }
 
 .followtools a,
