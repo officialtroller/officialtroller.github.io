@@ -26,6 +26,22 @@ a:visited {
     color: hsl(60, 50%, 60%)
 }
 
+#respawn>div.stats>i.fa.fa-facebook {
+    display: none;
+}
+
+#respawn>div.stats>i.fa.fa-twitter {
+    display: none;
+}
+
+#respawn>div.stats>i.fa.fa-vk {
+    display: none;
+}
+
+#respawn>div.stats>i.fa.fa-envelope {
+    display: none;
+}
+
 .grayblur {
     -moz-filter: grayscale(0.5) blur(3px);
     -webkit-filter: grayscale(0.5) blur(3px);
@@ -1068,6 +1084,30 @@ a.full-changelog:visited {
     background: hsla(60, 100%, 89%, 0.02);
     font-size: .8em;
     margin: 0 -10px -5px -10px
+}
+
+
+.textcentered.community.changelog-new [data-translate-base="music"] a svg {
+    display: inline-block;
+    transform-origin: center;
+    animation: rotateIcon 5s linear infinite;
+    /* Adjust the duration and timing function as needed */
+}
+
+.changelog-new i,
+.textcentered.community.changelog-new i,
+.textcentered.community.changelog-new [data-translate-base="music"] i {
+    animation: rotateIcon 2s linear infinite;
+}
+
+@keyframes rotateIcon {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 a.full-changelog:hover {
