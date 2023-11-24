@@ -555,6 +555,7 @@ a:visited {
     border-radius: 4px;
     font-size: 1.2em;
     border-radius: 30px;
+    margin: 10px;
 }
 
 .ecpbtn {
@@ -690,7 +691,10 @@ a:visited {
     width: 600px;
     padding: 0 10px;
     margin: 10px auto;
-    border-radius: 30px;
+    color: hsl(60, 70%, 70%);
+    text-shadow: none;
+    border-radius: 15px;
+    border-bottom: 1px solid hsl(60, 50%, 70%);
 }
 
 .stats i {
@@ -707,7 +711,8 @@ a:visited {
     display: inline-block;
     background: rgba(0, 0, 0, .6);
     padding: 10px 15px 5px 15px;
-    border-radius: 50% 50% 0 0
+    border-radius: 50% 50% 0 0;
+    border-bottom: 1px solid rgb(94, 57, 2);
 }
 
 #respawn_actions button {
