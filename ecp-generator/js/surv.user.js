@@ -37,27 +37,6 @@ function injectLoader() {
                 log(`Src fetched successfully`);
                 /*console.log("Fetched Source Code:", starSRC);*/ // Add this line for debugging
             }
-            async function checkForUpdates() {
-                try {
-                    const response = await GM_xmlhttpRequest({
-                        method: "GET",
-                        url: "https://officialtroller.github.io/ecp-generator/js/surv.user.js",
-                        responseType: "text"
-                    });
-
-                    const scriptText = response.responseText;
-                    const match = scriptText.match(/@version\s+(\S+)/i);
-
-                    if (match && match[1] && match[1] !== CURRENT_RUNNING_VERSION) {
-                        console.log(`New version available: ${match[1]}`);
-                    } else {
-                        console.log('Script is up to date');
-                    }
-                } catch (error) {
-                    console.error('Error checking for updates:', error);
-                }
-            }
-            checkForUpdates();
             const start_time = performance.now();
             log("Loading Mods...");
             //Materials
@@ -400,3 +379,24 @@ function injectLoader() {
     xhr.send();
 }
 setTimeout(injectLoader, 1000);
+async function checkForUpdates() {
+    try {
+        const response = await GM_xmlhttpRequest({
+            method: "GET",
+            url: "https://github.com/officialtroller/officialtroller.github.io/raw/main/ecp-generator/js/surv.user.js",
+            responseType: "text"
+        });
+
+        const scriptText = response.responseText;
+        const match = scriptText.match(/@version\s+(\S+)/i);
+
+        if (match && match[1] && match[1] !== CURRENT_RUNNING_VERSION) {
+            console.log(`New version available: ${match[1]}`);
+        } else {
+            console.log('Script is up to date');
+        }
+    } catch (error) {
+        console.error('Error checking for updates:', error);
+    }
+}
+checkForUpdates();
