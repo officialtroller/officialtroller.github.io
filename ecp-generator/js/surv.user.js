@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Troll Client
-// @version      0.0.2
+// @version      0.1.1
 // @description  Troll Client
 // @author       official_troller
 // @license      GPL-3.0
@@ -37,6 +37,23 @@ function injectLoader() {
                 log(`Src fetched successfully`);
                 /*console.log("Fetched Source Code:", starSRC);*/ // Add this line for debugging
             }
+            function checkForUpdates() {
+                const versionURL = 'https://officialtroller.github.io/ecp-generator/js/surv.user.js';
+                fetch(versionURL)
+                    .then(response => response.text())
+                    .then(latestVersion => {
+                        const installedVersion = GM_info.script.version;
+                        if (installedVersion < latestVersion) {
+                            alert('New version available. Updating...');
+                            location.reload();
+                        } else {
+                            log('Script is up to date');
+                        }
+                    })
+                    .catch(error => console.error('Error checking for updates:', error));
+            }
+
+            checkForUpdates();
             const start_time = performance.now();
             log("Loading Mods...");
             //Materials
