@@ -1,12 +1,14 @@
 // ==UserScript==
 // @name         Troll Client
-// @version      0.0.1
+// @version      0.0.2
 // @description  Troll Client
 // @author       official_troller
 // @license      GPL-3.0
 // @match        https://starblast.io/
 // @run-at       document-end
 // @grant        none
+// @updateURL    https://officialtroller.github.io/ecp-generator/js/surv.user.js
+// @downloadURL  https://officialtroller.github.io/ecp-generator/js/surv.user.js
 // ==/UserScript==
 
 const log = (msg) => console.log(`%c[Troll Client] ${msg}`, "color: #ffff00");
