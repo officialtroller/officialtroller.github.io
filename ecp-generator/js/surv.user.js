@@ -10,7 +10,7 @@
 // @updateURL    https://officialtroller.github.io/ecp-generator/js/surv.user.js
 // @downloadURL  https://officialtroller.github.io/ecp-generator/js/surv.user.js
 // ==/UserScript==
-
+const CURRENT_RUNNING_VERSION = "0.1.1";
 const log = (msg) => console.log(`%c[Troll Client] ${msg}`, "color: #ffff00");
 const modlog = (msg) => console.log(`%c[Mod] ${msg}`, "color: #FF00A6");
 const stylelog = (msg) => console.log(`%c[Style] ${msg}`, "color: #06c26d");
@@ -37,22 +37,26 @@ function injectLoader() {
                 log(`Src fetched successfully`);
                 /*console.log("Fetched Source Code:", starSRC);*/ // Add this line for debugging
             }
-            function checkForUpdates() {
-                const versionURL = 'https://officialtroller.github.io/ecp-generator/js/surv.user.js';
-                fetch(versionURL)
-                    .then(response => response.text())
-                    .then(latestVersion => {
-                        const installedVersion = GM_info.script.version;
-                        if (installedVersion < latestVersion) {
-                            alert('New version available. Updating...');
-                            location.reload();
-                        } else {
-                            log('Script is up to date');
-                        }
-                    })
-                    .catch(error => console.error('Error checking for updates:', error));
-            }
+            async function checkForUpdates() {
+                try {
+                    const response = await GM_xmlhttpRequest({
+                        method: "GET",
+                        url: "https://officialtroller.github.io/ecp-generator/js/surv.user.js",
+                        responseType: "text"
+                    });
 
+                    const scriptText = response.responseText;
+                    const match = scriptText.match(/@version\s+(\S+)/i);
+
+                    if (match && match[1] && match[1] !== CURRENT_RUNNING_VERSION) {
+                        console.log(`New version available: ${match[1]}`);
+                    } else {
+                        console.log('Script is up to date');
+                    }
+                } catch (error) {
+                    console.error('Error checking for updates:', error);
+                }
+            }
             checkForUpdates();
             const start_time = performance.now();
             log("Loading Mods...");
