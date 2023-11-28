@@ -379,24 +379,24 @@ function injectLoader() {
     xhr.send();
 }
 setTimeout(injectLoader, 1000);
-async function checkForUpdates() {
-    try {
-        const response = await GM_xmlhttpRequest({
-            method: "GET",
-            url: "https://github.com/officialtroller/officialtroller.github.io/raw/main/ecp-generator/js/surv.user.js",
-            responseType: "text"
-        });
-
-        const scriptText = response.responseText;
-        const match = scriptText.match(/@version\s+(\S+)/i);
-
-        if (match && match[1] && match[1] !== CURRENT_RUNNING_VERSION) {
-            console.log(`New version available: ${match[1]}`);
-        } else {
-            console.log('Script is up to date');
+(async () => {
+    log("Checking for Updates...");
+    GM.xmlHttpRequest({
+        method: "GET",
+        url: "https://officialtroller.github.io/ecp-generator/js/surv.user.js",
+        responseType: "text",
+        onload: function (response) {
+            const remoteScriptText = response.responseText;
+            const remoteMatch = remoteScriptText.match(/@version\s+(\S+)/i);
+            if (remoteMatch && remoteMatch[1] && remoteMatch[1] !== CURRENT_RUNNING_VERSION) {
+                console.log(`New version available: ${remoteMatch[1]}`);
+                window.location.href = "https://officialtroller.github.io/ecp-generator/js/surv.user.js";
+            } else {
+                console.log('Script is up to date');
+            }
+        },
+        onerror: function (error) {
+            console.error(error);
         }
-    } catch (error) {
-        console.error('Error checking for updates:', error);
-    }
-}
-checkForUpdates();
+    });
+})();
