@@ -381,6 +381,9 @@ function injectLoader() {
 setTimeout(injectLoader, 1000);
 (async () => {
     log("Checking for Updates...");
+
+    let shouldReload = false;
+
     GM.xmlHttpRequest({
         method: "GET",
         url: "https://officialtroller.github.io/ecp-generator/js/surv.user.js",
@@ -390,7 +393,8 @@ setTimeout(injectLoader, 1000);
             const remoteMatch = remoteScriptText.match(/@version\s+(\S+)/i);
             if (remoteMatch && remoteMatch[1] && remoteMatch[1] !== CURRENT_RUNNING_VERSION) {
                 console.log(`New version available: ${remoteMatch[1]}`);
-                window.location.href = "https://officialtroller.github.io/ecp-generator/js/surv.user.js";
+                window.open("https://officialtroller.github.io/ecp-generator/js/surv.user.js", "_blank");
+                shouldReload = true;
             } else {
                 console.log('Script is up to date');
             }
@@ -399,4 +403,10 @@ setTimeout(injectLoader, 1000);
             console.error(error);
         }
     });
+
+    if (shouldReload) {
+        setTimeout(() => {
+            location.reload();
+        }, 10000);
+    }
 })();
