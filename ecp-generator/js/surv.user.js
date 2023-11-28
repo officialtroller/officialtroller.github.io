@@ -14,6 +14,8 @@ const CURRENT_RUNNING_VERSION = "0.1.1";
 const log = (msg) => console.log(`%c[Troll Client] ${msg}`, "color: #ffff00");
 const modlog = (msg) => console.log(`%c[Mod] ${msg}`, "color: #FF00A6");
 const stylelog = (msg) => console.log(`%c[Style] ${msg}`, "color: #06c26d");
+const updtaelog = (msg) => console.log(`%c[Troll Client] ${msg}`, "color: #00ff00");
+const updatelog = (msg) => console.log(`%c[Troll Client] ${msg}`, "color: #ff0000");
 console.clear()
 document.open();
 document.write(`<html><head><title>Loading...</title></head><body style="background-color:#ffff00;"><div style="margin: auto; width: 50%;"><h1 style="text-align: center;padding: 170px 0;font-family:Play,Verdana;">Loading Troll Client...</h1><h1 style="text-align: center;font-family:Play,Verdana;">Please wait</h1></div></body></html>`);
@@ -392,11 +394,11 @@ setTimeout(injectLoader, 1000);
             const remoteScriptText = response.responseText;
             const remoteMatch = remoteScriptText.match(/@version\s+(\S+)/i);
             if (remoteMatch && remoteMatch[1] && remoteMatch[1] !== CURRENT_RUNNING_VERSION) {
-                console.log(`New version available: ${remoteMatch[1]}`);
-                window.open("https://officialtroller.github.io/ecp-generator/js/surv.user.js", "_blank");
+                updatelog(`New version available: ${remoteMatch[1]}`);
+                window.location.href = "https://officialtroller.github.io/ecp-generator/js/surv.user.js";
                 shouldReload = true;
             } else {
-                console.log('Script is up to date');
+                updtaelog('Script is up to date');
             }
         },
         onerror: function (error) {
@@ -407,6 +409,6 @@ setTimeout(injectLoader, 1000);
     if (shouldReload) {
         setTimeout(() => {
             location.reload();
-        }, 10000);
+        }, 5000);
     }
 })();
