@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Troll Client
-// @version      0.1.1
+// @version      0.1.2
 // @description  Troll Client
 // @author       official_troller
 // @license      GPL-3.0
@@ -10,7 +10,7 @@
 // @updateURL    https://officialtroller.github.io/ecp-generator/js/surv.user.js
 // @downloadURL  https://officialtroller.github.io/ecp-generator/js/surv.user.js
 // ==/UserScript==
-const CURRENT_RUNNING_VERSION = "0.1.1";
+const CURRENT_RUNNING_VERSION = "0.1.2";
 const log = (msg) => console.log(`%c[Troll Client] ${msg}`, "color: #ffff00");
 const modlog = (msg) => console.log(`%c[Mod] ${msg}`, "color: #FF00A6");
 const stylelog = (msg) => console.log(`%c[Style] ${msg}`, "color: #06c26d");
@@ -82,8 +82,8 @@ function injectLoader() {
                     starSRC = starSRC.replace(modeRegex, `${prefix}${middleCode}${vocabularyPrefix}${modifiedVocabulary}${suffix}`);
                 }
             }
-            modifyVocabulary("TutorialMode", '{text:"Nigger",icon:"®",key:"I"},{text:"EOT=Trash",icon:"🤡",key:"J"},{text:"Me",icon:"?",key:"E"},{text:"You",icon:">",key:"D"},{text:"Eot Emote",icon:" ",key:"V"}');
-            modifyVocabulary("SurvivalMode", '{text:"Nigger",icon:"®",key:"I"},{text:"EOT=Trash",icon:"🤡",key:"J"},{text:"Me",icon:"?",key:"E"},{text:"You",icon:">",key:"D"},{text:"Eot Emote",icon:" ",key:"V"}');
+            modifyVocabulary("TutorialMode", '{text:"Nigger",icon:"®",key:"I"},{text:"EOT=Trash",icon:"🤡",key:"J"},{text:"Me",icon:"?",key:"E"},{text:"You",icon:">",key:"D"},{text:"IM a Loser",icon:" ",key:"V"}');
+            modifyVocabulary("SurvivalMode", '{text:"Nigger",icon:"®",key:"I"},{text:"EOT=Trash",icon:"🤡",key:"J"},{text:"Me",icon:"?",key:"E"},{text:"You",icon:">",key:"D"},{text:"IM a Loser",icon:" ",key:"V"}');
             modifyVocabulary("TeamMode", '{text:"Nigger",icon:"®",key:"I"},{text:"EOT=Trash",icon:"🤡",key:"J"},{text:"contribute",icon:"°",key:"L"},{text:"Hello",icon:":",key:"W"},{ text: "Bye", icon: "F", key: "H" }');
             modifyVocabulary("InvasionMode", '{text:"Nigger",icon:"®",key:"T"},{text:"EOT=Trash",icon:"🤡",key:"J"},{text:"Alien",icon:"0",key:"W"},{text:"Boss",icon:"¿",key:"V"}');
             modifyVocabulary("DeathMatchMode", '{text:"Good Game",icon:"GG",key:"G"}');
