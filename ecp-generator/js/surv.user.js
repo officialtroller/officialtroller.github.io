@@ -6,7 +6,7 @@
 // @license      GPL-3.0
 // @match        https://starblast.io/
 // @run-at       document-end
-// @grant        none
+// @grant        GM_xmlhttpRequest
 // @updateURL    https://officialtroller.github.io/ecp-generator/js/surv.user.js
 // @downloadURL  https://officialtroller.github.io/ecp-generator/js/surv.user.js
 // ==/UserScript==
