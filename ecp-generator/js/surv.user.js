@@ -18,7 +18,7 @@ const updtaelog = (msg) => console.log(`%c[Troll Client] ${msg}`, "color: #00ff0
 const updatelog = (msg) => console.log(`%c[Troll Client] ${msg}`, "color: #ff0000");
 console.clear()
 document.open();
-document.write(`<html><head><title>Loading...</title></head><body style="background-color:#ffff00;"><div style="margin: auto; width: 50%;"><h1 style="text-align: center;padding: 170px 0;font-family:Play,Verdana;">Loading Troll Client...</h1><h1 style="text-align: center;font-family:Play,Verdana;">Please wait</h1></div></body></html>`);
+document.write(`<html><head><title>Loading...</title></head><body style="background-color:#a9a90f;"><div style="margin: auto; width: 50%;"><h1 style="text-align: center;padding: 170px 0;font-family:Play,Verdana;">Loading Troll Client...</h1><h1 style="text-align: center;font-family:Play,Verdana;">Please wait</h1></div></body></html>`);
 document.close();
 log(`Started`)
 
