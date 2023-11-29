@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Troll Client
-// @version      0.1.4
+// @version      0.1.5
 // @description  Troll Client
 // @author       official_troller
 // @license      GPL-3.0
@@ -10,7 +10,7 @@
 // @updateURL    https://officialtroller.github.io/ecp-generator/js/surv.user.js
 // @downloadURL  https://officialtroller.github.io/ecp-generator/js/surv.user.js
 // ==/UserScript==
-const CURRENT_RUNNING_VERSION = "0.1.4";
+const CURRENT_RUNNING_VERSION = "0.1.5";
 const log = (msg) => console.log(`%c[Troll Client] ${msg}`, "color: #ffff00");
 const modlog = (msg) => console.log(`%c[Mod] ${msg}`, "color: #FF00A6");
 const stylelog = (msg) => console.log(`%c[Style] ${msg}`, "color: #06c26d");
@@ -129,12 +129,10 @@ function injectLoader() {
             let scibidy = document.createElement("script");
             scibidy.src = "https://cdn.jsdelivr.net/gh/officialtroller/starblast-things/settingetab.js";
             document.body.appendChild(scibidy);
-            modlog(`Settings added`);
             //Badge Manager
             let sibiti = document.createElement("script");
             sibiti.src = "https://cdn.jsdelivr.net/gh/officialtroller/starblast-things/badge-managers.js";
             document.body.appendChild(sibiti);
-            modlog(`Badge Manager added`);
             const lowNameCase = localStorage.getItem("lownamecase");
             const timDel = localStorage.getItem("timdel");
             const noobus = localStorage.getItem("noobus");
@@ -257,7 +255,8 @@ function injectLoader() {
                         moddingthing[i].addEventListener("click", onGameStart);
                     }
                     stylelog(`Css applied`);
-                    stylelog(`Setting applied`);
+                    stylelog(`Settings added`);
+                    stylelog(`Badge Manager added`);
                     stylelog("Style loaded successfully");
                     log(`Client loaded successfully`);
                 });
