@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Troll Client
-// @version      0.1.5
+// @version      0.1.6
 // @description  Troll Client
 // @author       official_troller
 // @license      GPL-3.0
@@ -10,7 +10,7 @@
 // @updateURL    https://officialtroller.github.io/ecp-generator/js/surv.user.js
 // @downloadURL  https://officialtroller.github.io/ecp-generator/js/surv.user.js
 // ==/UserScript==
-const CURRENT_RUNNING_VERSION = "0.1.5";
+const CURRENT_RUNNING_VERSION = "0.1.6";
 const log = (msg) => console.log(`%c[Troll Client] ${msg}`, "color: #ffff00");
 const modlog = (msg) => console.log(`%c[Mod] ${msg}`, "color: #FF00A6");
 const stylelog = (msg) => console.log(`%c[Style] ${msg}`, "color: #06c26d");
@@ -144,7 +144,6 @@ function injectLoader() {
             const weaponisten = localStorage.getItem("weaponisten");
             //main settings
             starSRC = starSRC.replace(/"fullcolor"===this\.custom\.finish&&(this\.custom\.finish="alloy"),/, '');
-            starSRC = starSRC.replace(/(r\.addEventListener\("click",function\(\)\{)(if\(a\|\|i\.featured\))(.+?)(t\.closeModal\(\),t\.startModdingMode\(i\)\}\))/, '$1document.querySelector("#blur").remove();$2$3$4');
             if (weaponisten) {
                 let script = document.createElement("script");
                 script.src = "https://cdn.jsdelivr.net/gh/officialtroller/starblast-things/customweaponmod.js";
@@ -191,7 +190,10 @@ function injectLoader() {
                 starSRC = starSRC.replace(/this\.[iI10OlL]{3,6}\.mode\.radar_shows_leader/g, "1");
                 modlog(`Leader Uncovered`);
             }
-
+            if (blurdes === "true") {
+                starSRC = starSRC.replace(/(r\.addEventListener\("click",function\(\)\{)(if\(a\|\|i\.featured\))(.+?)(t\.closeModal\(\),t\.startModdingMode\(i\)\}\))/, '$1document.querySelector("#blur").remove();$2$3$4');
+                modlog(`Blur Added`);
+            }
             var regex = /var\s+x\s*=\s*document\.querySelector\(".training"\),/;
             starSRC = starSRC.replace(regex, '');
             starSRC = starSRC.replace("https://starblast.data.neuronality.com/img/starblast_io_logo.svg?3", "https://raw.githubusercontent.com/immagangster2/justsomething/main/seasonal-client.png");
@@ -231,6 +233,7 @@ function injectLoader() {
                         div.style.zIndex = '0';
                         overlay.insertBefore(div, overlay.firstChild);
                         overlay.style.zIndex = '1';
+                        stylelog(`Blur added`)
                     }
                     if (window.location.pathname == "/") {
                         if (window.location.pathname == "/") {
