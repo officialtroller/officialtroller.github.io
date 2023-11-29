@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Troll Client
-// @version      0.1.3
+// @version      0.1.4
 // @description  Troll Client
 // @author       official_troller
 // @license      GPL-3.0
@@ -10,7 +10,7 @@
 // @updateURL    https://officialtroller.github.io/ecp-generator/js/surv.user.js
 // @downloadURL  https://officialtroller.github.io/ecp-generator/js/surv.user.js
 // ==/UserScript==
-const CURRENT_RUNNING_VERSION = "0.1.3";
+const CURRENT_RUNNING_VERSION = "0.1.4";
 const log = (msg) => console.log(`%c[Troll Client] ${msg}`, "color: #ffff00");
 const modlog = (msg) => console.log(`%c[Mod] ${msg}`, "color: #FF00A6");
 const stylelog = (msg) => console.log(`%c[Style] ${msg}`, "color: #06c26d");
@@ -125,16 +125,12 @@ function injectLoader() {
                 }
             }
             modlog("Badges added");
-            //custom Bases
-            let sbibt = document.createElement("script");
-            sbibt.src = "https://cdn.jsdelivr.net/gh/bhpsngum/starblast-snippets@latest/CustomStationModuleModels/loader.user.js";
-            document.body.appendChild(sbibt);
-            modlog(`Custom Bases added`);
-            //custom weapons
-            let script = document.createElement("script");
-            script.src = "https://cdn.jsdelivr.net/gh/officialtroller/starblast-things/customweaponmod.js";
-            document.body.appendChild(script);
-            modlog(`Custom Weapons added`);
+            //Client Settings
+            let scibidy = document.createElement("script");
+            scibidy.src = "https://cdn.jsdelivr.net/gh/officialtroller/starblast-things/settingetab.js";
+            document.body.appendChild(scibidy);
+            modlog(`Settings added`);
+            //Badge Manager
             let sibiti = document.createElement("script");
             sibiti.src = "https://cdn.jsdelivr.net/gh/officialtroller/starblast-things/badge-managers.js";
             document.body.appendChild(sibiti);
@@ -145,12 +141,29 @@ function injectLoader() {
             const leaderunde = localStorage.getItem("leaderunde");
             const get = localStorage.getItem("emopacity");
             const gemslol = localStorage.getItem("gemindeed");
+            const blurdes = localStorage.getItem("blurdes");
+            const stationisten = localStorage.getItem("stationisten");
+            const weaponisten = localStorage.getItem("weaponisten");
             //main settings
             starSRC = starSRC.replace(/"fullcolor"===this\.custom\.finish&&(this\.custom\.finish="alloy"),/, '');
             starSRC = starSRC.replace(/(r\.addEventListener\("click",function\(\)\{)(if\(a\|\|i\.featured\))(.+?)(t\.closeModal\(\),t\.startModdingMode\(i\)\}\))/, '$1document.querySelector("#blur").remove();$2$3$4');
+            if (weaponisten) {
+                let script = document.createElement("script");
+                script.src = "https://cdn.jsdelivr.net/gh/officialtroller/starblast-things/customweaponmod.js";
+                document.body.appendChild(script);
+                modlog(`Custom Weapons added`);
+            }
+
+            if (stationisten) {
+                let sbibt = document.createElement("script");
+                sbibt.src = "https://cdn.jsdelivr.net/gh/bhpsngum/starblast-snippets@latest/CustomStationModuleModels/loader.user.js";
+                document.body.appendChild(sbibt);
+                modlog(`Custom Bases added`);
+            }
+
             if (get) {
                 starSRC = starSRC.replace(/>=\s*4/, `>= ${get}`);
-                modlog(get + "Emotes added");
+                modlog(get + " Emotes added");
             }
 
             if (gemslol) {
@@ -203,22 +216,24 @@ function injectLoader() {
                         document.getElementsByTagName('head')[0].appendChild(link);
                     }
                     addCss('https://officialtroller.github.io/css/clitentecsss.css');
-                    var overlay = document.querySelector('#overlay');
-                    var div = document.createElement('div');
-                    div.id = 'blur';
-                    div.style.position = 'absolute';
-                    div.style.top = '0';
-                    div.style.left = '0';
-                    div.style.width = '100%';
-                    div.style.height = '100%';
-                    div.style.background = 'hsla(60, 80%, 80%, .3)';
-                    div.style.boxShadow = '0 4px 30px rgba(0, 0, 0, 0.1)';
-                    div.style.backdropFilter = 'blur(7.1px)';
-                    div.style.webkitBackdropFilter = 'blur(7.1px)';
-                    div.style.pointerEvents = 'none';
-                    div.style.zIndex = '0';
-                    overlay.insertBefore(div, overlay.firstChild);
-                    overlay.style.zIndex = '1';
+                    if (blurdes === "true") {
+                        var overlay = document.querySelector('#overlay');
+                        var div = document.createElement('div');
+                        div.id = 'blur';
+                        div.style.position = 'absolute';
+                        div.style.top = '0';
+                        div.style.left = '0';
+                        div.style.width = '100%';
+                        div.style.height = '100%';
+                        div.style.background = 'hsla(60, 80%, 80%, .3)';
+                        div.style.boxShadow = '0 4px 30px rgba(0, 0, 0, 0.1)';
+                        div.style.backdropFilter = 'blur(7.1px)';
+                        div.style.webkitBackdropFilter = 'blur(7.1px)';
+                        div.style.pointerEvents = 'none';
+                        div.style.zIndex = '0';
+                        overlay.insertBefore(div, overlay.firstChild);
+                        overlay.style.zIndex = '1';
+                    }
                     if (window.location.pathname == "/") {
                         if (window.location.pathname == "/") {
                             document.getElementsByClassName(`textcentered community changelog-new`)[0].innerHTML = `\n              <a href="https://open.spotify.com/user/gilpom/playlist/47N9rRbMXezlPXvhqVM3lJ?si=6bHzE9A9S-2TGh7C4OndkA" target="_blank" style="color: rgb(255, 255, 255);"><svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="1.414"><path d="M8 0C3.6 0 0 3.6 0 8s3.6 8 8 8 8-3.6 8-8-3.56-8-8-8zm3.68 11.56c-.16.24-.44.32-.68.16-1.88-1.16-4.24-1.4-7.04-.76-.28.08-.52-.12-.6-.36-.08-.28.12-.52.36-.6 3.04-.68 5.68-.4 7.76.88.28.12.32.44.2.68zm.96-2.2c-.2.28-.56.4-.84.2-2.16-1.32-5.44-1.72-7.96-.92-.32.08-.68-.08-.76-.4-.08-.32.08-.68.4-.76 2.92-.88 6.52-.44 9 1.08.24.12.36.52.16.8zm.08-2.24C10.16 5.6 5.88 5.44 3.44 6.2c-.4.12-.8-.12-.92-.48-.12-.4.12-.8.48-.92 2.84-.84 7.52-.68 10.48 1.08.36.2.48.68.28 1.04-.2.28-.68.4-1.04.2z" fill-rule="nonzero"></path></svg><br>Spotify</a>\n              <a href="https://www.deezer.com/playlist/5343057502" target="_blank" style="color: rgb(255, 255, 255);"><svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="1.414"><path d="M9.812 12.464h2.917v-.884H9.81v.884zm-6.54 0h2.916v-.884H3.27v.884zm-3.272 0h2.917v-.884H0v.884zm6.54 0h2.92v-.884H6.54v.884zm6.543 0H16v-.884h-2.917v.884zm0-1.15H16v-.883h-2.917v.89zm-6.542 0h2.92v-.883H6.54v.89zm-6.54 0h2.92v-.883H0v.89zm3.27 0h2.92v-.883H3.27v.89zm6.55 0h2.92v-.883H9.81v.89zm0-1.148h2.92v-.884H9.81v.884zm-6.54 0h2.91v-.884H3.27v.884zm-3.27 0h2.91v-.884H0v.884zm6.54 0h2.92v-.884H6.54v.884zm6.55 0H16v-.884h-2.917v.884zm0-1.15H16v-.883h-2.917v.884zm-6.54 0h2.91v-.883H6.54v.884zm-6.54 0h2.91v-.883H0v.884zm9.82 0h2.92v-.883H9.81v.884zm0-1.15h2.92v-.882H9.81v.883zm-9.82 0h2.91v-.88H0v.882zm6.54 0h2.92v-.88H6.54v.882zm6.54 0H16v-.882h-2.917v.884zM6.54 6.72h2.92v-.885H6.54v.884zm6.543-.002H16v-.883h-2.917v.883zM6.54 5.57h2.92v-.885H6.54v.885zm6.543 0H16v-.885h-2.917v.884zm0-1.15H16v-.884h-2.917v.884z"></path></svg><br>Deezer</a>\n            <a href="https://starblast.dankdmitron.dev/" target="_blank" style="color: rgb(255, 255, 255);"><i class='sbg sbg-fly-full'></i><br>SL+</a>\n            <a href="https://starblast-shipyard.github.io/" target="_blank" style="color: rgb(255, 255, 255);"><i class='sbg sbg-fly-full'></i><br>Shipyard</a>\n            <a href="https://starblast.io/modding.html" target="_blank" style="color: rgb(255, 255, 255);"><i class='sbg sbg-modding'></i><br>Modding Space</a>\n            <a href="https://starblast.io/shipeditor/" target="_blank" style="color: rgb(255, 255, 255);"><i class='sbg sbg-fly'></i><br>Ship Editor</a>\n            `
@@ -242,137 +257,6 @@ function injectLoader() {
                         moddingthing[i].addEventListener("click", onGameStart);
                     }
                     stylelog(`Css applied`);
-
-                    function addSettings() {
-                        var originalDiv = document.querySelector('.changelog-new');
-                        if (originalDiv) {
-                            var newDiv = document.createElement('div');
-                            newDiv.innerHTML = `
-                <h2 style="text-align:center"><i class="fa fa-star"></i> Settings <i class="fa fa-star"></i></h2>
-                <p style="line-height: 1.5;">
-                    <input type="checkbox" id="uncoverLeader"> <label for="uncoverLeader">Uncover Leader</label><br>
-                    <input type="checkbox" id="exampleMod"> <label for="exampleMod">Example Mod</label><br>
-                    <input type="checkbox" id="removeTimer"> <label for="removeTimer">Remove Timer</label><br>
-                    <label for="emoteCapacity" class="emote-label">Emote Capacity:</label>
-                    <span id="emoteCapacityValue" class="emote-value">1</span>
-                    <input type="range" id="emoteCapacity" min="1" max="5" class="emote-slider"><br>
-                    <label for="gemColor" class="color-label">Gem Color:</label>
-                    <input type="color" id="gemColor" class="color-input"><br>
-                    <input type="checkbox" id="lowercaseName"> <label for="lowercaseName">Lowercase Name</label><br>
-                    <button id="applyChangesBtn" style="padding: 6px 10px; font-size: .95vw; cursor: pointer; margin: 5px 0 0 0; text-align: center; background: radial-gradient(ellipse at center, hsla(60,50%,0%,1) 0, hsla(60,100%,70%,.5) 150%); box-shadow: 0 0 6px hsla(60,100%,80%,1); text-shadow: 0 0 7px hsla(60,100%,80%,1); color: hsla(60,100%,90%,.8); font-family: Play,Verdana; border: 0; border-radius: 20px;">Apply Changes</button>
-                </p>
-            `;
-
-                            originalDiv.querySelector('div').appendChild(newDiv);
-
-                            newDiv.style.marginRight = '10px';
-                            newDiv.style.marginTop = '10px';
-                            loadSettings();
-                            attachEventListeners();
-                        }
-                    }
-
-                    function attachEventListeners() {
-                        var checkboxes = document.querySelectorAll('input[type="checkbox"]');
-                        checkboxes.forEach(function (checkbox) {
-                            checkbox.addEventListener('change', function () {
-                                saveSetting(checkbox.id, checkbox.checked);
-                            });
-                        });
-
-                        var rangeInput = document.getElementById('emoteCapacity');
-                        if (rangeInput) {
-                            rangeInput.addEventListener('input', function () {
-                                saveSetting('emoteCapacity', Number(rangeInput.value));
-                                document.getElementById('emoteCapacityValue').textContent = rangeInput.value;
-                            });
-                            rangeInput.value = getSettingValue('emoteCapacity');
-                            document.getElementById('emoteCapacityValue').textContent = rangeInput.value;
-                        }
-
-                        var colorInput = document.getElementById('gemColor');
-                        if (colorInput) {
-                            colorInput.addEventListener('input', function () {
-                                saveSetting('gemColor', colorInput.value);
-                            });
-                            colorInput.value = getSettingValue('gemColor');
-                        }
-
-                        var applyChangesBtn = document.getElementById('applyChangesBtn');
-                        if (applyChangesBtn) {
-                            applyChangesBtn.addEventListener('click', function () {
-                                saveSetting();
-                                location.reload();
-                            });
-                        }
-                    }
-
-                    function loadSettings() {
-                        var settings = [
-                            'uncoverLeader',
-                            'exampleMod',
-                            'removeTimer',
-                            'emoteCapacity',
-                            'gemColor',
-                            'lowercaseName'
-                        ];
-
-                        settings.forEach(function (setting) {
-                            var key = getKey(setting);
-                            var value = localStorage.getItem(key);
-                            if (value !== null) {
-                                if (setting === 'emoteCapacity') {
-                                    document.getElementById(setting).value = value;
-                                    document.getElementById('emoteCapacityValue').textContent = value;
-                                } else if (setting === 'gemColor') {
-                                    document.getElementById(setting).value = value;
-                                } else {
-                                    document.getElementById(setting).checked = JSON.parse(value);
-                                }
-                            }
-                        });
-                    }
-
-                    function saveSetting(setting, value) {
-                        var key = getKey(setting);
-                        if (setting === 'gemColor') {
-                            localStorage.setItem(key, value);
-                        } else {
-                            localStorage.setItem(key, JSON.stringify(value));
-                        }
-                    }
-
-                    function getKey(setting) {
-                        switch (setting) {
-                            case 'uncoverLeader':
-                                return 'leaderunde';
-                            case 'exampleMod':
-                                return 'noobus';
-                            case 'emoteCapacity':
-                                return 'emopacity';
-                            case 'gemColor':
-                                return 'gemindeed';
-                            case 'lowercaseName':
-                                return 'lownamecase';
-                            case 'removeTimer':
-                                return 'timdel';
-                            default:
-                                return setting;
-                        }
-                    }
-
-                    function getSettingValue(setting) {
-                        var key = getKey(setting);
-                        var value = localStorage.getItem(key);
-                        if (setting === 'emoteCapacity') {
-                            return value ? Number(value) : 1;
-                        } else if (setting === 'gemColor') {
-                            return value || '#00ff00';
-                        }
-                        return value ? JSON.parse(value) : false;
-                    }
-
-                    addSettings();
                     stylelog(`Setting applied`);
                     stylelog("Style loaded successfully");
                     log(`Client loaded successfully`);
