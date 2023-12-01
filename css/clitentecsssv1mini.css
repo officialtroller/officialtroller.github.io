@@ -302,14 +302,6 @@ a:visited {
     background: 0 0
 }
 
-.ecpinput,
-.stats input {
-    width: 350px;
-    border-radius: 30px;
-    font-size: 1.2em;
-    margin: 10px
-}
-
 #play.orange,
 #player button,
 #respawn_actions button,
