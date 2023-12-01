@@ -1,0 +1,879 @@
+:root {
+    --box-shadow: hsla(60, 100%, 80%, 1)
+}
+
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #000;
+    overflow: hidden;
+    font-family: Play, Verdana;
+    transform: rotate("90deg")
+}
+
+
+a {
+    text-decoration: none;
+    color: hsl(60, 50%, 80%)
+}
+
+a:visited {
+    color: hsl(60, 50%, 60%)
+}
+
+#respawn>div.stats>i.fa.fa-facebook {
+    display: none;
+}
+
+#respawn>div.stats>i.fa.fa-twitter {
+    display: none;
+}
+
+#respawn>div.stats>i.fa.fa-vk {
+    display: none;
+}
+
+#respawn>div.stats>i.fa.fa-envelope {
+    display: none;
+}
+
+#overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 2;
+    text-align: center;
+    font-size: 2em;
+    color: #EEE;
+    text-shadow: 0 0 3px #000, 0 0 3px #000, 0 0 3px #000, 0 0 3px #000;
+    transition: opacity .5s ease;
+    box-shadow: 0 0 6px hsla(60, 80%, 80%, 1);
+    text-shadow: 0 0 2px hsla(60, 80%, 80%, .3);
+    color: hsla(60, 90%, 90%, .8)
+}
+
+.loadwrapper .progress {
+    height: 15px;
+    width: 0;
+    background: hsl(60, 90%, 70%);
+    background: linear-gradient(to right, hsl(60, 30%, 30%) 0, hsl(60, 90%, 70%) 100%)
+}
+
+#moddingspace,
+#donate,
+#rankings,
+#training {
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+    color: hsla(60, 100%, 90%, .9);
+    border-radius: 0;
+    margin: 4px;
+    padding: 7px;
+    background: radial-gradient(ellipse at center, hsla(60, 50%, 0%, 1) 0, hsla(60, 100%, 80%, .5) 150%);
+    box-shadow: 0 0 6px var(--box-shadow);
+    transition: color 0.5s ease;
+}
+
+#moddingspace,
+#donate,
+#rankings,
+#training {
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+    color: hsla(60, 100%, 90%, .9);
+    border-radius: 0;
+    margin: 4px;
+    padding: 7px;
+    background: radial-gradient(ellipse at center, hsla(60, 50%, 0%, 1) 0, hsla(60, 100%, 80%, .5) 150%);
+    box-shadow: 0 0 6px var(--box-shadow);
+    transition: color 0.5s ease, border-radius 0.5s ease;
+    border-radius: 25px 50px;
+}
+
+#moddingspace:hover,
+#donate:hover,
+#rankings:hover,
+#training:hover {
+    border-radius: 50px 25px;
+}
+
+#moddingspace i,
+#donate i,
+#rankings i,
+#training i {
+    transition: .5s ease
+}
+
+#moddingspace::before,
+#donate::before,
+#rankings::before,
+#training::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: hsla(60, 50%, 0%, 1);
+    z-index: -1;
+    transform: scaleX(0);
+    transform-origin: 100% 50%;
+    transition: transform 0.5s ease;
+    border-radius: 50px 25px;
+}
+
+#moddingspace:hover::before,
+#donate:hover::before,
+#rankings:hover::before,
+#training:hover::before {
+    transform: scaleX(1) scale(1.2);
+    transform-origin: 0 50%;
+}
+
+#moddingspace:hover i,
+#donate:hover i,
+#rankings:hover i,
+#training:hover i {
+    filter: blur(0px);
+    transition: .5s ease;
+}
+
+#moddingspace i,
+#donate i,
+#rankings i,
+#training i {
+    filter: blur(4px);
+    transition: .5s ease;
+}
+
+#moddingspace:hover span,
+#donate:hover span,
+#rankings:hover span,
+#training:hover span {
+    filter: none;
+}
+
+
+#moddingspace span,
+#donate span,
+#rankings span,
+#training span {
+    filter: blur(4px);
+    transition: filter 0.5s ease;
+}
+
+.followtools a,
+.followtools a:visited {
+    display: inline-block;
+    background: radial-gradient(ellipse at center, hsla(60, 50%, 0%, 1) 0, hsla(60, 100%, 80%, .5) 150%);
+    box-shadow: 0 0 6px var(--box-shadow);
+    color: hsla(60, 100%, 90%, .9);
+    border-radius: 0;
+    padding: 7px;
+    margin: 4px;
+    position: relative;
+    border-radius: 25px 50px;
+}
+
+
+.followtools a.big {
+    text-shadow: 0 0 7px var(--box-shadow);
+    text-align: center;
+    width: 217px;
+    margin: 4px 4px 10px 4px;
+    padding: 4px 10px;
+    line-height: 13px;
+    font-size: 1.1em;
+}
+
+.followtools a.big i {
+    text-shadow: 0 0 1px hsla(60, 100%, 80%, .2);
+    font-size: 2.8em
+}
+
+.followtools a.big.cup i {
+    background-image: linear-gradient(135deg, #fceabb 0, #fccd4d 50%, #f8b500 51%, #fbdf93 100%);
+    color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text
+}
+
+.followtools a.gold,
+.followtools a.gold:visited,
+#donate_mobile {
+    text-shadow: 0 0 7px var(--box-shadow);
+    background: radial-gradient(ellipse at center, hsla(60, 50%, 0%, 1) 0, hsla(60, 100%, 80%, .5) 150%);
+    box-shadow: 0 0 6px var(--box-shadow);
+    color: hsla(60, 100%, 90%, .9)
+}
+
+.social i,
+.mobile-social i,
+.mobile-tools i,
+.stats i {
+    background: rgba(0, 0, 0, .6);
+    padding: 5px;
+    font-size: 1.4em;
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    border: 0;
+    text-align: center;
+    cursor: pointer;
+    background: radial-gradient(ellipse at center, hsla(60, 50%, 0%, 1) 0, hsla(60, 100%, 70%, .5) 150%);
+    box-shadow: 0 0 6px var(--box-shadow);
+    text-shadow: 0 0 7px var(--box-shadow);
+    color: hsla(60, 100%, 90%, .8);
+    border-radius: 50%;
+    animation: rotates 3s linear infinite;
+}
+
+.social i:hover,
+.mobile-social i:hover,
+.mobile-tools i:hover,
+.stats i:hover {
+    background: #000;
+    border: 0 solid hsl(60, 90%, 70%);
+    background: radial-gradient(ellipse at center, hsla(60, 50%, 0%, 1) 0, hsla(60, 70%, 70%, .5) 100%);
+    box-shadow: 0 0 6px var(--box-shadow);
+    text-shadow: 0 0 7px var(--box-shadow);
+    color: #FFF;
+}
+
+@keyframes rotates {
+    0% {
+        transform: translateY(0) rotate(0deg);
+    }
+
+    100% {
+        transform: translateY(0) rotate(360deg);
+    }
+}
+
+.inputwrapper {
+    display: inline-block;
+    background: linear-gradient(to top, hsla(60, 70%, 70%, .5) 0, hsla(60, 50%, 0%, 1) 20%, hsla(60, 50%, 0%, 1) 60%, hsla(60, 20%, 40%, .5) 100%);
+    box-shadow: 0 0 6px hsla(60, 80%, 80%, 1);
+    text-shadow: 0 0 7px hsla(60, 80%, 80%, 1);
+    border-radius: 4px;
+    height: 43px;
+    margin-top: 10px;
+    position: relative;
+    max-width: 100%;
+    border-radius: 30px
+}
+
+#player input {
+    height: 43px;
+    line-height: 43px;
+    padding: 0 8px;
+    font-size: .8em;
+    text-align: center;
+    border: 0 solid hsl(60, 90%, 10%);
+    width: 415px;
+    max-width: 80%;
+    color: #EEE;
+    outline: 0;
+    background: transparent;
+    transition: all .5s ease;
+    text-shadow: 0 0 7px hsla(60, 80%, 80%, 1);
+    color: hsla(60, 90%, 90%, .8);
+}
+
+.stats input,
+.ecpinput {
+    height: 43px;
+    line-height: 43px;
+    padding: 0 8px;
+    text-align: center;
+    border: 0 solid hsl(60, 90%, 10%);
+    width: 350px;
+    outline: 0;
+    transition: all .5s ease;
+    background: linear-gradient(to top, hsla(60, 70%, 70%, .5) 0, hsla(60, 50%, 0%, 1) 20%, hsla(60, 50%, 0%, 1) 60%, hsla(60, 20%, 40%, .5) 100%);
+    box-shadow: 0 0 6px hsla(60, 80%, 80%, 1);
+    color: hsla(60, 90%, 90%, .8);
+    text-shadow: 0 0 7px hsla(60, 80%, 80%, 1);
+    border-radius: 4px;
+    font-size: 1.2em;
+    border-radius: 30px;
+    margin: 10px;
+}
+
+::input-placeholder {
+    color: hsla(60, 10%, 80%, .4);
+    text-shadow: 0 0 7px hsla(60, 80%, 80%, .3);
+    font-size: 16px
+}
+
+::-webkit-input-placeholder {
+    color: hsla(60, 10%, 80%, .4);
+    text-shadow: 0 0 7px hsla(60, 80%, 80%, .3);
+    font-size: 16px
+}
+
+::-moz-placeholder {
+    color: hsla(60, 10%, 80%, .4);
+    text-shadow: 0 0 7px hsla(60, 80%, 80%, .3);
+    font-size: 16px
+}
+
+:-ms-input-placeholder {
+    color: hsla(60, 10%, 80%, .4);
+    text-shadow: 0 0 7px hsla(60, 80%, 80%, .3);
+    font-size: 16px
+}
+
+#player button,
+#respawn_actions button,
+.donate-btn {
+    padding: 10px 60px;
+    font-size: 1.2em;
+    cursor: pointer;
+    margin: 20px 0 20px 0;
+    text-align: center;
+    background: radial-gradient(ellipse at center, hsla(60, 50%, 0%, 1) 0, hsla(60, 100%, 70%, .5) 150%);
+    box-shadow: 0 0 6px var(--box-shadow);
+    text-shadow: 0 0 7px var(--box-shadow);
+    color: hsla(60, 100%, 90%, .8);
+    font-family: Play, Verdana;
+    border: 0;
+    border-radius: 20px;
+}
+
+#player button:hover,
+#respawn_actions button:hover,
+.donate-btn:hover,
+.ecpbtn:hover {
+    background: radial-gradient(ellipse at center, hsla(60, 50%, 0%, 1) 0, hsla(60, 100%, 70%, .5) 100%);
+    box-shadow: 0 0 8px hsla(60, 100%, 90%, 1);
+    color: #FFF;
+}
+
+.playbtn i {
+    padding: 0 10px;
+    font-size: 2em;
+    vertical-align: middle;
+    font-family: normal normal normal 14px/1 FontAwesome;
+    margin: 9px 10px 0 10px;
+    cursor: pointer;
+    color: hsla(60, 60%, 80%, .5);
+    text-align: center;
+    text-shadow: 0 0 7px var(--box-shadow);
+    transition: .5s ease
+}
+
+.playbtn i:hover {
+    text-shadow: 0 0 27px var(--box-shadow);
+    transition: .5s ease
+}
+
+#play.orange {
+    color: #FFF;
+    background: radial-gradient(ellipse at center, hsla(60, 50%, 0%, 1) 0, hsla(60, 100%, 70%, .5) 150%);
+    text-shadow: 0 0 7px var(--box-shadow);
+    box-shadow: 0 0 6px var(--box-shadow);
+}
+
+#play.orange:hover {
+    background: radial-gradient(ellipse at center, hsla(60, 50%, 0%, 1) 0, hsla(60, 100%, 70%, .5) 100%);
+    box-shadow: 0 0 8px hsla(60, 100%, 90%, 1)
+}
+
+.stats {
+    font-size: .5em;
+    border: 2px solid hsl(60, 50%, 70%);
+    box-shadow: 0 0 15px hsl(60, 50%, 70%);
+    background: hsla(60, 50%, 10%, .5);
+    width: 600px;
+    padding: 0 10px;
+    margin: 10px auto;
+    color: hsl(60, 70%, 70%);
+    text-shadow: none;
+    border-radius: 15px;
+    border-bottom: 1px solid hsl(60, 50%, 70%);
+}
+
+.stats small {
+    display: inline-block;
+    background: rgba(0, 0, 0, .6);
+    padding: 10px 15px 5px 15px;
+    border-radius: 50% 50% 0 0;
+    border-bottom: 1px solid rgb(94, 57, 2);
+}
+
+.statinfo {
+    font-size: 1.5em;
+    height: 40px;
+    line-height: 40px;
+    padding: 0 20px;
+    border-bottom: 1px solid hsl(60, 50%, 55%);
+    transition: all .5s ease
+}
+
+#goinfo {
+    color: hsl(60, 50%, 70%);
+    font-size: 2vw
+}
+
+.gameloaderwrapper {
+    width: 90%;
+    margin: 0 auto;
+    height: 25px;
+    background: linear-gradient(to bottom, #000 0, #444 49%, #222 50%, #000 100%);
+    border: 2px solid hsla(60, 100%, 70%, .8);
+    box-shadow: 0 0 10px var(--box-shadow);
+    border-radius: 4px
+}
+
+.sbg-facebook:hover .sbg-diamond,
+.sbg-twitter:hover .sbg-diamond {
+    color: hsl(60, 90%, 70%)
+}
+
+.loaderprogress {
+    height: 25px;
+    width: 0;
+    background: hsl(60, 90%, 70%);
+    background: linear-gradient(to right, hsla(60, 30%, 30%, .7) 0, hsla(60, 90%, 80%, .8) 100%)
+}
+
+.textprogress {
+    margin-top: 20px;
+    text-shadow: 0 0 10px var(--box-shadow);
+    color: hsla(60, 100%, 90%, .9)
+}
+
+.cookieconsent {
+    opacity: 0;
+    transition: opacity 2s ease
+}
+
+.changelog-new,
+.extrabutton {
+    text-align: left;
+    width: 18vw;
+    border: 0;
+    background: linear-gradient(-45deg, hsla(60, 50%, 10%, .5) 0, hsla(60, 50%, 50%, .15) 100%);
+    padding: 5px 10px;
+    box-shadow: 0 0 6px var(--box-shadow);
+    font-size: .95vw;
+    display: none;
+    margin-top: 10px
+}
+
+.community a {
+    display: inline-block;
+    border: 2px solid rgba(0, 0, 0, .5);
+    width: 20%;
+    margin: .3%;
+    padding: 1vh 0;
+    text-align: center;
+    color: hsla(60, 90%, 90%, .8);
+    border-radius: 10px;
+    background: rgba(0, 0, 0, .3);
+    fill: currentColor
+}
+
+.alphacentauri h2 {
+    margin: 10px 0;
+    padding: 0;
+    padding-bottom: 4px;
+    border-bottom: solid 5px hsla(60, 60%, 60%, .2);
+    font-size: 16px
+}
+
+.changelog-new .fa-star,
+.extrabutton .fa-star {
+    color: hsla(50, 70%, 70%, 1)
+}
+
+.changelog-new h2 {
+    font-size: 1.15vw;
+    margin: 10px 0;
+    padding: 0;
+    padding-bottom: 4px;
+    border-bottom: solid 5px hsla(60, 60%, 60%, .2)
+}
+
+a.full-changelog,
+a.full-changelog:visited {
+    color: #ddd;
+    text-shadow: none;
+    display: block;
+    text-align: center;
+    padding: 10px;
+    border-top: 1px solid hsla(60, 60%, 60%, .2);
+    background: hsla(60, 100%, 89%, 0.02);
+    font-size: .8em;
+    margin: 0 -10px -5px -10px
+}
+
+
+.textcentered.community.changelog-new [data-translate-base="music"] a svg {
+    display: inline-block;
+    transform-origin: center;
+    animation: rotateIcon 5s linear infinite;
+    /* Adjust the duration and timing function as needed */
+}
+
+.changelog-new i,
+.textcentered.community.changelog-new i,
+.textcentered.community.changelog-new [data-translate-base="music"] i {
+    animation: rotateIcon 2s linear infinite;
+}
+
+@keyframes rotateIcon {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+a.full-changelog:hover {
+    color: #fff;
+    text-decoration: none;
+    background: hsla(60, 100%, 89%, 0.1)
+}
+
+div[data-translate-base="changelog_new"] {
+    border-radius: 20px 20px 0px 0px;
+}
+
+div[data-translate-base="community"] {
+    border-radius: 0px 0px 20px 20px;
+}
+
+.schedule {
+    border: 0;
+    background: linear-gradient(-45deg, hsla(60, 50%, 10%, 1) 0, hsla(60, 50%, 50%, .15) 100%);
+    padding: 5px 10px;
+    box-shadow: 0 0 6px var(--box-shadow);
+    font-size: 1.3vw;
+    margin-top: 10px
+}
+
+.top-right .date {
+    color: hsl(60, 60%, 75%);
+    margin-bottom: 3px
+}
+
+.steam-info {
+    margin-top: -10px;
+    background: hsla(60, 50%, 10%, .75);
+    padding: 20px 5px;
+    font-size: 14px
+}
+
+.modal {
+    z-index: 3;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: -750px;
+    margin: 0 auto;
+    box-shadow: 0 0 6px var(--box-shadow);
+    width: 800px;
+    max-width: 100%;
+    max-height: 100%;
+    background: linear-gradient(135deg, hsla(60, 30%, 10%, 1) 0, hsla(60, 30%, 30%, 1) 150%);
+    transition: top .6s ease;
+    display: none;
+    overflow: auto;
+    color: hsla(60, 80%, 100%, .8);
+    text-shadow: 0 0 6px hsla(60, 100%, 60%, .75);
+    border-radius: 20px;
+}
+
+.modal::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, .5);
+    background-color: hsla(60, 50%, 70%, .5);
+
+}
+
+.modal .header {
+    margin: 5px 0;
+    padding: 5px 40px;
+    font-size: 2em;
+    background: hsla(60, 70%, 70%, .1);
+    border-bottom: 5px solid hsla(60, 50%, 70%, .5)
+}
+
+.modal .close-modal:hover {
+    color: #FFF;
+    background: hsla(60, 100%, 97%, 0.1)
+}
+
+.modal .modalbody .regions {
+    text-align: center;
+    border-bottom: 1px solid hsla(60, 50%, 70%, .5);
+    margin: 0 -40px 40px -40px;
+    padding: 10px 0;
+    background: hsla(60, 100%, 74%, 0.08)
+}
+
+.modal .modalbody span.region:hover {
+    background: hsla(60, 100%, 74%, 0.05)
+}
+
+.modal .modalbody span.region.active {
+    color: #FFF;
+    background: radial-gradient(ellipse at center, hsla(60, 50%, 60%, .5) 20%, hsla(60, 50%, 0%, 1) 150%);
+    box-shadow: 0 0 6px var(--box-shadow);
+    text-shadow: 0 0 7px var(--box-shadow);
+}
+
+.modal .mod:hover img {
+    filter: grayscale(0)
+}
+
+#ranks .rankings tbody tr:nth-child(odd) {
+    background: hsla(60, 100%, 74%, 0.08)
+}
+
+#ranks .rankings th.orating {
+    width: 33.333%;
+    background: rgba(0, 0, 0, .2);
+    border: 1px dashed hsl(60, 50%, 50%);
+    border-bottom: 0
+}
+
+#ranks .rankings td.trophies {
+    width: 10%;
+    background: rgba(0, 0, 0, .2);
+    border-right: 1px dashed hsl(60, 50%, 50%);
+    text-align: right
+}
+
+.modal .modalbody select,
+.modal .modalbody input[type=text],
+.modal .modalbody input.number {
+    font-size: .8em;
+    padding: 3px 5px;
+    color: white;
+    background: hsl(60, 60%, 15%);
+    border: 1px solid hsl(60, 60%, 10%);
+    float: right;
+    vertical-align: middle;
+    width: 241px;
+    box-sizing: border-box
+}
+
+.modal .modalbody hr {
+    border-color: hsla(60, 23%, 45%, 1)
+}
+
+.modal .modalbody .gmodes span {
+    display: inline-block;
+    height: 40px;
+    line-height: 40px;
+    width: 45%;
+    margin: 1%;
+    border: 2px solid hsl(60, 60%, 10%);
+    text-align: center;
+    cursor: pointer
+}
+
+.modal .modalbody .gmodes span.selected {
+    box-shadow: 0 0 6px var(--box-shadow);
+    color: white
+}
+
+.modal .modalbody .range {
+    float: right;
+    vertical-align: middle;
+    font-size: .7em;
+    padding: 0 100px 0 10px;
+    position: relative;
+    background: hsl(60, 60%, 15%);
+    border: 1px solid hsl(60, 60%, 10%);
+    height: 30px;
+    line-height: 30px
+}
+
+.download-apps img {
+    border: 3px solid hsla(60, 50%, 60%, .5);
+    border-radius: 10px;
+    width: 64px;
+    margin: 10px
+}
+
+.download-apps img:hover {
+    box-shadow: 0 0 6px var(--box-shadow);
+}
+
+.frozenbg,
+.frozenbg:visited {
+    background: radial-gradient(ellipse at center, hsla(60, 50%, 0%, 1) 20%, hsla(60, 50%, 60%, .5) 150%);
+    box-shadow: 0 0 6px var(--box-shadow);
+    text-shadow: 0 0 7px var(--box-shadow);
+    color: hsla(60, 100%, 90%, .8);
+    border-radius: 30px;
+}
+
+.hotbg,
+.hotbg:visited {
+    background: radial-gradient(ellipse at center, hsla(0, 100%, 30%, 1) 20%, hsla(0, 100%, 50%, 1) 150%);
+    box-shadow: 0 0 6px hsla(60, 80%, 70%, 1);
+    color: #FFF;
+    border: 0;
+    cursor: pointer
+}
+
+.buy-on:hover {
+    box-shadow: 0 0 8px hsla(60, 100%, 90%, 1);
+    color: hsla(60, 100%, 95%, .9)
+}
+
+.blue {
+    color: hsl(60, 50%, 70%)
+}
+
+.smallblue {
+    font-size: 60%;
+    color: hsl(60, 50%, 70%)
+}
+
+.pricechoice span {
+    display: inline-block;
+    padding: 3px;
+    vertical-align: middle;
+    margin-right: 10px;
+    background: linear-gradient(-45deg, hsla(60, 30%, 30%, .5) 0, hsla(60, 50%, 50%, .75) 100%);
+    text-align: center;
+    width: 68px;
+    cursor: pointer;
+    font-size: 1.2em;
+    color: rgba(255, 255, 255, .5)
+}
+
+.custom-amount input {
+    display: inline-block;
+    padding: 4px;
+    vertical-align: middle;
+    text-shadow: 0 0 7px hsla(60, 80%, 80%, 1);
+    border: 0;
+    outline: 0;
+    background: rgba(255, 255, 255, .1);
+    color: #FFF;
+    margin-right: 10px;
+    width: 100px;
+    text-align: center;
+    font-size: 1.5em
+}
+
+#licenceKey {
+    text-align: center;
+    border: 2px solid hsla(60, 80%, 80%, .2);
+    background: rgba(0, 0, 0, .2);
+    color: #FFF;
+    width: 150px;
+    font-size: 1.5em;
+    vertical-align: middle;
+    padding: 5px
+}
+
+#licenceKeyBtn {
+    vertical-align: middle;
+    font-size: 1.5em;
+    border: 2px solid hsla(60, 80%, 80%, .2);
+    background: rgba(0, 0, 0, .2);
+    margin-left: 10px;
+    color: #fff;
+    padding: 5px 20px
+}
+
+input:checked+.slider {
+    background-color: rgb(7, 175, 7);
+    border-radius: 30px;
+}
+
+input:focus+.slider {
+    box-shadow: 0 0 1px hsl(60, 60%, 30%)
+}
+
+#customEventable {
+    box-shadow: 0 0 1px hsl(60, 60%, 30%);
+    border: 0;
+    background: radial-gradient(ellipse at center, hsla(60, 50%, 0%, 1) 20%, hsla(60, 50%, 60%, .5) 150%);
+    box-shadow: 0 0 6px var(--box-shadow);
+    text-shadow: 0 0 7px var(--box-shadow);
+    color: hsla(60, 100%, 90%, .8);
+    padding: 10px 32px;
+    color: white;
+    cursor: pointer
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 9.3px;
+    cursor: pointer;
+    box-shadow: 1px 1px 1px #000, 0 0 1px #0d0d0d;
+    background: hsl(60, 50%, 45%);
+    border-radius: 1.3px;
+    border: .2px solid #160101
+}
+
+input[type=range]:focus::-webkit-slider-runnable-track {
+    background: hsl(60, 60%, 55%)
+}
+
+input[type=range]::-moz-range-track {
+    width: 100%;
+    height: 9.3px;
+    cursor: pointer;
+    box-shadow: 1px 1px 1px #000, 0 0 1px #0d0d0d;
+    background: hsl(60, 50%, 45%);
+    border-radius: 1.3px;
+    border: .2px solid #160101
+}
+
+input[type=range]::-ms-fill-lower {
+    background: hsla(60, 36%, 43%, 1);
+    border: .2px solid #160101;
+    border-radius: 2.6px;
+    box-shadow: 1px 1px 1px #000, 0 0 1px #0d0d0d
+}
+
+input[type=range]::-ms-fill-upper {
+    background: hsl(60, 50%, 45%);
+    border: .2px solid #160101;
+    border-radius: 2.6px;
+    box-shadow: 1px 1px 1px #000, 0 0 1px #0d0d0d
+}
+
+input[type=range]:focus::-ms-fill-lower {
+    background: hsl(60, 50%, 45%)
+}
+
+input[type=range]:focus::-ms-fill-upper {
+    background: hsl(60, 60%, 55%)
+}
+
+.github-fork-ribbon:before {
+    background-color: hsla(60, 50%, 60%, .65)
+}
+
+.github-fork-ribbon:hover:before {
+    background-color: hsla(60, 50%, 60%, .85)
+}
+
+[data-tooltip]:before {
+    background-color: hsla(60, 50%, 30%, 0.9);
+}
+
+[data-tooltip]:after {
+    border-top: 5px solid hsla(60, 50%, 30%, .9);
+}
