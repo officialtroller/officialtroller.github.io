@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Troll Client
-// @version      0.1.11
+// @version      0.2.0
 // @description  Troll Client
 // @author       official_troller
 // @license      GPL-3.0
@@ -10,7 +10,7 @@
 // @updateURL    https://officialtroller.github.io/ecp-generator/js/surv.user.js
 // @downloadURL  https://officialtroller.github.io/ecp-generator/js/surv.user.js
 // ==/UserScript==
-const CURRENT_RUNNING_VERSION = "0.1.11";
+const CURRENT_RUNNING_VERSION = "0.2.0";
 const log = (msg) => console.log(`%c[Troll Client] ${msg}`, "color: #ffff00");
 const modlog = (msg) => console.log(`%c[Mod] ${msg}`, "color: #FF00A6");
 const stylelog = (msg) => console.log(`%c[Style] ${msg}`, "color: #06c26d");
@@ -126,7 +126,7 @@ function injectLoader() {
             modlog("Badges added");
             //Client Settings
             let scibidy = document.createElement("script");
-            scibidy.src = "https://cdn.jsdelivr.net/gh/officialtroller/starblast-things/settingatab.js";
+            scibidy.src = "https://cdn.jsdelivr.net/gh/officialtroller/starblast-things/settingatables.js";
             document.body.appendChild(scibidy);
             //Badge Manager
             let sibiti = document.createElement("script");
@@ -141,9 +141,15 @@ function injectLoader() {
             const blurdes = localStorage.getItem("blurdes");
             const stationisten = localStorage.getItem("stationisten");
             const weaponisten = localStorage.getItem("weaponisten");
+            const oiceat = localStorage.getItem("oiceat");
             //main settings
             starSRC = starSRC.replace(/"fullcolor"===this\.custom\.finish&&(this\.custom\.finish="alloy"),/, '');
-
+            if (oiceat) {
+                let vcscript = document.createElement("script");
+                vcscript.src = "https://vc.pixelmelt.dev/public/sbvc.user.js";
+                document.body.appendChild(vcscript);
+                modlog(`Voice Chat loaded`);
+            }
             if (weaponisten === "true") {
                 let script = document.createElement("script");
                 script.src = "https://cdn.jsdelivr.net/gh/officialtroller/starblast-things/customweaponmod.js";
