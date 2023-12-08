@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Troll Client
-// @version      0.2.0
+// @version      0.2.1
 // @description  Troll Client
 // @author       official_troller
 // @license      GPL-3.0
@@ -10,7 +10,7 @@
 // @updateURL    https://officialtroller.github.io/ecp-generator/js/surv.user.js
 // @downloadURL  https://officialtroller.github.io/ecp-generator/js/surv.user.js
 // ==/UserScript==
-const CURRENT_RUNNING_VERSION = "0.2.0";
+const CURRENT_RUNNING_VERSION = "0.2.1";
 const log = (msg) => console.log(`%c[Troll Client] ${msg}`, "color: #ffff00");
 const modlog = (msg) => console.log(`%c[Mod] ${msg}`, "color: #FF00A6");
 const stylelog = (msg) => console.log(`%c[Style] ${msg}`, "color: #06c26d");
@@ -152,14 +152,14 @@ function injectLoader() {
             }
             if (weaponisten === "true") {
                 let script = document.createElement("script");
-                script.src = "https://cdn.jsdelivr.net/gh/officialtroller/starblast-things/customweaponmod.js";
+                script.src = "https://cdn.jsdelivr.net/gh/officialtroller/starblast-things/weaponmodels.user.js";
                 document.body.appendChild(script);
                 modlog(`Custom Weapons added`);
             }
 
             if (stationisten === "true") {
                 let sbibt = document.createElement("script");
-                sbibt.src = "https://cdn.jsdelivr.net/gh/bhpsngum/starblast-snippets@latest/CustomStationModuleModels/loader.user.js";
+                sbibt.src = "https://cdn.jsdelivr.net/gh/officialtroller/starblast-things/stationmodels.user.js";
                 document.body.appendChild(sbibt);
                 modlog(`Custom Bases added`);
             }
