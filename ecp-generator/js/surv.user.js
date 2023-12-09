@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Troll Client
-// @version      0.2.1
+// @version      0.2.2
 // @description  Troll Client
 // @author       official_troller
 // @license      GPL-3.0
@@ -10,7 +10,7 @@
 // @updateURL    https://officialtroller.github.io/ecp-generator/js/surv.user.js
 // @downloadURL  https://officialtroller.github.io/ecp-generator/js/surv.user.js
 // ==/UserScript==
-const CURRENT_RUNNING_VERSION = "0.2.1";
+const CURRENT_RUNNING_VERSION = "0.2.2";
 const log = (msg) => console.log(`%c[Troll Client] ${msg}`, "color: #ffff00");
 const modlog = (msg) => console.log(`%c[Mod] ${msg}`, "color: #FF00A6");
 const stylelog = (msg) => console.log(`%c[Style] ${msg}`, "color: #06c26d");
@@ -146,7 +146,7 @@ function injectLoader() {
             starSRC = starSRC.replace(/"fullcolor"===this\.custom\.finish&&(this\.custom\.finish="alloy"),/, '');
             if (oiceat) {
                 let vcscript = document.createElement("script");
-                vcscript.src = "https://vc.pixelmelt.dev/public/sbvc.user.js";
+                vcscript.src = "https://cdn.jsdelivr.net/gh/officialtroller/starblast-things/voicechat.user.js";
                 document.body.appendChild(vcscript);
                 modlog(`Voice Chat loaded`);
             }
