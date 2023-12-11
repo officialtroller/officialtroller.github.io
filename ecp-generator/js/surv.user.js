@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Troll Client
-// @version      0.2.4
+// @version      0.2.5
 // @description  Troll Client
 // @author       official_troller
 // @license      GPL-3.0
@@ -10,7 +10,7 @@
 // @updateURL    https://officialtroller.github.io/ecp-generator/js/surv.user.js
 // @downloadURL  https://officialtroller.github.io/ecp-generator/js/surv.user.js
 // ==/UserScript==
-const CURRENT_RUNNING_VERSION = "0.2.4";
+const CURRENT_RUNNING_VERSION = "0.2.5";
 const log = (msg) => console.log(`%c[Troll Client] ${msg}`, "color: #ffff00");
 const modlog = (msg) => console.log(`%c[Mod] ${msg}`, "color: #FF00A6");
 const stylelog = (msg) => console.log(`%c[Style] ${msg}`, "color: #06c26d");
@@ -126,11 +126,11 @@ function injectLoader() {
             modlog("Badges added");
             //Client Settings
             let scibidy = document.createElement("script");
-            scibidy.src = "https://cdn.jsdelivr.net/gh/officialtroller/starblast-things/settingatablesskuse.js";
+            scibidy.src = "https://cdn.jsdelivr.net/gh/officialtroller/starblast-things/settingatabses.js";
             document.body.appendChild(scibidy);
             //Badge Manager
             let sibiti = document.createElement("script");
-            sibiti.src = "https://cdn.jsdelivr.net/gh/officialtroller/starblast-things/badge-managers.js";
+            sibiti.src = "https://cdn.jsdelivr.net/gh/officialtroller/starblast-things/badge-managerse.js";
             document.body.appendChild(sibiti);
             const lowNameCase = localStorage.getItem("lownamecase");
             const timDel = localStorage.getItem("timdel");
