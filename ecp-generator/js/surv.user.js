@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Troll Client
-// @version      0.2.2
+// @version      0.2.3
 // @description  Troll Client
 // @author       official_troller
 // @license      GPL-3.0
@@ -10,7 +10,7 @@
 // @updateURL    https://officialtroller.github.io/ecp-generator/js/surv.user.js
 // @downloadURL  https://officialtroller.github.io/ecp-generator/js/surv.user.js
 // ==/UserScript==
-const CURRENT_RUNNING_VERSION = "0.2.2";
+const CURRENT_RUNNING_VERSION = "0.2.3";
 const log = (msg) => console.log(`%c[Troll Client] ${msg}`, "color: #ffff00");
 const modlog = (msg) => console.log(`%c[Mod] ${msg}`, "color: #FF00A6");
 const stylelog = (msg) => console.log(`%c[Style] ${msg}`, "color: #06c26d");
@@ -126,7 +126,7 @@ function injectLoader() {
             modlog("Badges added");
             //Client Settings
             let scibidy = document.createElement("script");
-            scibidy.src = "https://cdn.jsdelivr.net/gh/officialtroller/starblast-things/settingatables.js";
+            scibidy.src = "https://cdn.jsdelivr.net/gh/officialtroller/starblast-things/settingatablesskuse.js";
             document.body.appendChild(scibidy);
             //Badge Manager
             let sibiti = document.createElement("script");
@@ -142,6 +142,7 @@ function injectLoader() {
             const stationisten = localStorage.getItem("stationisten");
             const weaponisten = localStorage.getItem("weaponisten");
             const oiceat = localStorage.getItem("oiceat");
+            const goodles = localStorage.getItem("goodles");
             //main settings
             starSRC = starSRC.replace(/"fullcolor"===this\.custom\.finish&&(this\.custom\.finish="alloy"),/, '');
             if (oiceat) {
@@ -200,10 +201,16 @@ function injectLoader() {
                 starSRC = starSRC.replace(/(r\.addEventListener\("click",function\(\)\{)(if\(a\|\|i\.featured\))(.+?)(t\.closeModal\(\),t\.startModdingMode\(i\)\}\))/, '$1document.querySelector("#blur").remove();$2$3$4');
                 modlog(`Blur Added`);
             }
+            if (goodles === "true") {
+                starSRC = starSRC.replace(/,\s*"blank"\s*!==\s*this\.custom\.badge/, ',"blank"');
+                starSRC = starSRC.replace(/default:t\.fillStyle="hsl\((\d+),(\d+%)?,(\d+%)\)"/, 'default:t.fillStyle="hsla(50, 100%, 50%, 0)"');
+                starSRC = starSRC.replace(/default:t\.fillStyle="hsl\((\d+),(\d+%)?,(\d+%)\)"/, 'default:t.fillStyle="hsla(50, 100%, 70%, 0)"');
+            }
             var regex = /var\s+x\s*=\s*document\.querySelector\(".training"\),/;
             starSRC = starSRC.replace(regex, '');
             starSRC = starSRC.replace("https://starblast.data.neuronality.com/img/starblast_io_logo.svg?3", "https://raw.githubusercontent.com/immagangster2/justsomething/main/clientlolgo.png");
             modlog(`Logo replaced`);
+            //log(`Modified Code:\n\n${starSRC}`);
             const end_time = performance.now();
             log(`Loaded Mods successfully (${(end_time - start_time).toFixed(0)}ms)`);
             document.open();
