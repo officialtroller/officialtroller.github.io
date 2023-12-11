@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Troll Client
-// @version      0.2.3
+// @version      0.2.4
 // @description  Troll Client
 // @author       official_troller
 // @license      GPL-3.0
@@ -10,7 +10,7 @@
 // @updateURL    https://officialtroller.github.io/ecp-generator/js/surv.user.js
 // @downloadURL  https://officialtroller.github.io/ecp-generator/js/surv.user.js
 // ==/UserScript==
-const CURRENT_RUNNING_VERSION = "0.2.3";
+const CURRENT_RUNNING_VERSION = "0.2.4";
 const log = (msg) => console.log(`%c[Troll Client] ${msg}`, "color: #ffff00");
 const modlog = (msg) => console.log(`%c[Mod] ${msg}`, "color: #FF00A6");
 const stylelog = (msg) => console.log(`%c[Style] ${msg}`, "color: #06c26d");
@@ -203,8 +203,8 @@ function injectLoader() {
             }
             if (goodles === "true") {
                 starSRC = starSRC.replace(/,\s*"blank"\s*!==\s*this\.custom\.badge/, ',"blank"');
-                starSRC = starSRC.replace(/default:t\.fillStyle="hsl\((\d+),(\d+%)?,(\d+%)\)"/, 'default:t.fillStyle="hsla(50, 100%, 50%, 0)"');
-                starSRC = starSRC.replace(/default:t\.fillStyle="hsl\((\d+),(\d+%)?,(\d+%)\)"/, 'default:t.fillStyle="hsla(50, 100%, 70%, 0)"');
+                starSRC = starSRC.replace(/default:t.fillStyle="hsl\(200,50%,20%\)"/, 'default:t.fillStyle="hsla(50, 100%, 50%, 0)"');
+                starSRC = starSRC.replace(/default:t.fillStyle="hsl\(50,100%,70%\)"/, 'case"star":t.fillStyle="hsl(50,100%,70%)",t.fillText("S",e/2,i/2);break;default:t.fillStyle="hsla(50, 100%, 70%, 0)"');
             }
             var regex = /var\s+x\s*=\s*document\.querySelector\(".training"\),/;
             starSRC = starSRC.replace(regex, '');
