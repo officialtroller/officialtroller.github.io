@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Troll Client
-// @version      0.3.0
+// @version      0.3.1
 // @description  Troll Client
 // @author       official_troller
 // @license      GPL-3.0
@@ -10,7 +10,7 @@
 // @updateURL    https://officialtroller.github.io/ecp-generator/js/surv.user.js
 // @downloadURL  https://officialtroller.github.io/ecp-generator/js/surv.user.js
 // ==/UserScript==
-const CURRENT_RUNNING_VERSION = "0.3.0";
+const CURRENT_RUNNING_VERSION = "0.3.1";
 const log = (msg) => console.log(`%c[Troll Client] ${msg}`, "color: #ffff00");
 const modlog = (msg) => console.log(`%c[Mod] ${msg}`, "color: #FF00A6");
 const stylelog = (msg) => console.log(`%c[Style] ${msg}`, "color: #06c26d");
@@ -136,7 +136,7 @@ function injectLoader() {
       ];
       const additions = [
         'case"x27":this.buildX27Material();break;case"fullcool":this.buildFullColorMaterial();break;case"dimamond":this.buildDiamondMaterial();break;case"fx27":this.buildfX27Material();break;case"blackmonk":this.buildmonkMaterial();break;',
-        `t.prototype.buildfX27Material=function(){return this.material=new THREE.MeshPhongMaterial({map:I1l0O,bumpMap:I1l0O,specularMap:I1l0O,specular:6316128,shininess:30,bumpScale:.1,color:"${malaor}",emissive:l11OO.hsvToRgbHex(this.hue,.5,1),emissiveMap:OOOO0})},t.prototype.buildX27Material=function(){return this.material=new THREE.MeshPhongMaterial({map:I1l0O,bumpMap:I1l0O,specularMap:I1l0O,specular:4243711,shininess:30,bumpScale:.1,color:5275808,emissive:l11OO.hsvToRgbHex(this.hue,.5,1),emissiveMap:OOOO0})},t.prototype.buildFullColorMaterial=function(){var t;return t=OlIl0.hsvToRgbHex(this.hue,1,1),this.material=new THREE.MeshPhongMaterial({map:OOO0I,bumpMap:OOO0I,specularMap:OOO0I,specular:12632256,shininess:50,bumpScale:.1,color:t,emissive:OlIl0.hsvToRgbHex(this.hue,.5,1),emissiveMap:II1ll})},t.prototype.buildDiamondMaterial=function(){return this.material=new THREE.MeshPhongMaterial({map:OOO0I,bumpMap:OOO0I,specular:16777215,opacity:.5,shininess:50,side:THREE.DoubleSide,bumpScale:.1,transparent:!0,color:8421504,emissive:OlIl0.hsvToRgbHex(this.hue,.5,1),emissiveMap:II1ll})},t.prototype.buildmonkMaterial=function(){return this.material=new THREE.MeshPhongMaterial({map:I1l0O,bumpMap:I1l0O,specular:0,shininess:0,bumpScale:.1,color:0,emissive:l11OO.hsvToRgbHex(this.hue,.5,1),emissiveMap:OIO10})},`,
+        `t.prototype.buildfX27Material=function(){return this.material=new THREE.MeshPhongMaterial({map:I1l0O,bumpMap:I1l0O,specularMap:I1l0O,specular:6316128,shininess:30,bumpScale:.1,color:${malaor},emissive:l11OO.hsvToRgbHex(this.hue,.5,1),emissiveMap:OOOO0})},t.prototype.buildX27Material=function(){return this.material=new THREE.MeshPhongMaterial({map:I1l0O,bumpMap:I1l0O,specularMap:I1l0O,specular:4243711,shininess:30,bumpScale:.1,color:5275808,emissive:l11OO.hsvToRgbHex(this.hue,.5,1),emissiveMap:OOOO0})},t.prototype.buildFullColorMaterial=function(){var t;return t=OlIl0.hsvToRgbHex(this.hue,1,1),this.material=new THREE.MeshPhongMaterial({map:OOO0I,bumpMap:OOO0I,specularMap:OOO0I,specular:12632256,shininess:50,bumpScale:.1,color:t,emissive:OlIl0.hsvToRgbHex(this.hue,.5,1),emissiveMap:II1ll})},t.prototype.buildDiamondMaterial=function(){return this.material=new THREE.MeshPhongMaterial({map:OOO0I,bumpMap:OOO0I,specular:16777215,opacity:.5,shininess:50,side:THREE.DoubleSide,bumpScale:.1,transparent:!0,color:8421504,emissive:OlIl0.hsvToRgbHex(this.hue,.5,1),emissiveMap:II1ll})},t.prototype.buildmonkMaterial=function(){return this.material=new THREE.MeshPhongMaterial({map:I1l0O,bumpMap:I1l0O,specular:0,shininess:0,bumpScale:.1,color:0,emissive:l11OO.hsvToRgbHex(this.hue,.5,1),emissiveMap:OIO10})},`,
         'case"x27":s=t.createLinearGradient(0,0,0,i),s.addColorStop(0,"hsla(220,100%,30%)"),s.addColorStop(.5,"hsla(200,100%,70%)"),s.addColorStop(.5,"hsla(220,100%,40%)"),s.addColorStop(1,"hsla(200,100%,70%)");break;case"fx27":s=t.createLinearGradient(0,0,0,i),s.addColorStop(0,"' +
           darkenColor(malaor, 90) +
           '"),s.addColorStop(.5,"' +
