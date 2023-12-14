@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Troll Client
-// @version      0.3.4
+// @version      0.3.5
 // @description  Troll Client
 // @author       official_troller
 // @license      GPL-3.0
@@ -10,7 +10,7 @@
 // @updateURL    https://officialtroller.github.io/ecp-generator/js/surv.user.js
 // @downloadURL  https://officialtroller.github.io/ecp-generator/js/surv.user.js
 // ==/UserScript==
-const CURRENT_RUNNING_VERSION = "0.3.4";
+const CURRENT_RUNNING_VERSION = "0.3.5";
 const log = (msg) => console.log(`%c[Troll Client] ${msg}`, "color: #ffff00");
 const modlog = (msg) => console.log(`%c[Mod] ${msg}`, "color: #FF00A6");
 const stylelog = (msg) => console.log(`%c[Style] ${msg}`, "color: #06c26d");
@@ -276,6 +276,7 @@ function injectLoader() {
             const oiceat = localStorage.getItem("oiceat");
             const goodles = localStorage.getItem("goodles");
             //main settings
+            starSRC = starSRC.replace(/l11OO\.hsvToRgbHex\(this\.hue,\.5,1\)/g, 'l11OO.hsvToRgbHex(this.hue,1,1)');
             starSRC = starSRC.replace(
                 /"fullcolor"===this\.custom\.finish&&(this\.custom\.finish="alloy"),/
                 , ""
