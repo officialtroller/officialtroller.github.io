@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Troll Client
-// @version      0.3.1
+// @version      0.3.2
 // @description  Troll Client
 // @author       official_troller
 // @license      GPL-3.0
@@ -10,7 +10,7 @@
 // @updateURL    https://officialtroller.github.io/ecp-generator/js/surv.user.js
 // @downloadURL  https://officialtroller.github.io/ecp-generator/js/surv.user.js
 // ==/UserScript==
-const CURRENT_RUNNING_VERSION = "0.3.1";
+const CURRENT_RUNNING_VERSION = "0.3.2";
 const log = (msg) => console.log(`%c[Troll Client] ${msg}`, "color: #ffff00");
 const modlog = (msg) => console.log(`%c[Mod] ${msg}`, "color: #FF00A6");
 const stylelog = (msg) => console.log(`%c[Style] ${msg}`, "color: #06c26d");
@@ -43,89 +43,67 @@ function injectLoader() {
         /*console.log("Fetched Source Code:", starSRC);*/ // Add this line for debugging
       }
       const start_time = performance.now();
-      const malaor = localStorage.getItem("malaor");
-      function darkenColor(color, percent) {
-        // Parse the color into its RGB components
-        const hex = color.slice(1);
-        const num = parseInt(hex, 16);
+function darkenColor(color, percent) {
+    // Parse the color into its RGB components
+    const hex = color.slice(1);
+    const num = parseInt(hex, 16);
 
-        // Convert to HSL
-        let r = (num >> 16) / 255;
-        let g = ((num >> 8) & 0xff) / 255;
-        let b = (num & 0xff) / 255;
+    // Convert to HSL
+    let r = (num >> 16) / 255;
+    let g = ((num >> 8) & 0xFF) / 255;
+    let b = (num & 0xFF) / 255;
 
-        const max = Math.max(r, g, b);
-        const min = Math.min(r, g, b);
+    const max = Math.max(r, g, b);
+    const min = Math.min(r, g, b);
 
-        let h,
-          s,
-          l = (max + min) / 2;
+    let h, s, l = (max + min) / 2;
 
-        if (max === min) {
-          h = s = 0; // achromatic
-        } else {
-          const d = max - min;
-          s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+    if (max === min) {
+        h = s = 0; // achromatic
+    } else {
+        const d = max - min;
+        s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
 
-          switch (max) {
-            case r:
-              h = (g - b) / d + (g < b ? 6 : 0);
-              break;
-            case g:
-              h = (b - r) / d + 2;
-              break;
-            case b:
-              h = (r - g) / d + 4;
-              break;
-          }
-
-          h /= 6;
+        switch (max) {
+            case r: h = (g - b) / d + (g < b ? 6 : 0); break;
+            case g: h = (b - r) / d + 2; break;
+            case b: h = (r - g) / d + 4; break;
         }
 
-        // Darken the color in the HSL space
-        l *= 1 - percent / 100;
+        h /= 6;
+    }
 
-        // Convert back to RGB
-        let c = (1 - Math.abs(2 * l - 1)) * s;
-        let x = c * (1 - Math.abs(((h * 6) % 2) - 1));
-        let m = l - c / 2;
+    // Darken the color in the HSL space
+    l *= 1 - percent / 100;
 
-        let newR, newG, newB;
+    // Convert back to RGB
+    let c = (1 - Math.abs(2 * l - 1)) * s;
+    let x = c * (1 - Math.abs((h * 6) % 2 - 1));
+    let m = l - c / 2;
 
-        if (0 <= h && h < 1 / 6) {
-          newR = c;
-          newG = x;
-          newB = 0;
-        } else if (1 / 6 <= h && h < 2 / 6) {
-          newR = x;
-          newG = c;
-          newB = 0;
-        } else if (2 / 6 <= h && h < 3 / 6) {
-          newR = 0;
-          newG = c;
-          newB = x;
-        } else if (3 / 6 <= h && h < 4 / 6) {
-          newR = 0;
-          newG = x;
-          newB = c;
-        } else if (4 / 6 <= h && h < 5 / 6) {
-          newR = x;
-          newG = 0;
-          newB = c;
-        } else {
-          newR = c;
-          newG = 0;
-          newB = x;
-        }
+    let newR, newG, newB;
 
-        newR = Math.round((newR + m) * 255);
-        newG = Math.round((newG + m) * 255);
-        newB = Math.round((newB + m) * 255);
+    if (0 <= h && h < 1 / 6) {
+        newR = c; newG = x; newB = 0;
+    } else if (1 / 6 <= h && h < 2 / 6) {
+        newR = x; newG = c; newB = 0;
+    } else if (2 / 6 <= h && h < 3 / 6) {
+        newR = 0; newG = c; newB = x;
+    } else if (3 / 6 <= h && h < 4 / 6) {
+        newR = 0; newG = x; newB = c;
+    } else if (4 / 6 <= h && h < 5 / 6) {
+        newR = x; newG = 0; newB = c;
+    } else {
+        newR = c; newG = 0; newB = x;
+    }
 
-        return `#${newR.toString(16).padStart(2, "0")}${newG
-          .toString(16)
-          .padStart(2, "0")}${newB.toString(16).padStart(2, "0")}`;
-      }
+    newR = Math.round((newR + m) * 255);
+    newG = Math.round((newG + m) * 255);
+    newB = Math.round((newB + m) * 255);
+
+    return `#${newR.toString(16).padStart(2, '0')}${newG.toString(16).padStart(2, '0')}${newB.toString(16).padStart(2, '0')}`;
+}
+
       log("Loading Mods...");
       //Materials
       const substrings = [
@@ -134,18 +112,11 @@ function injectLoader() {
         'case"titanium":s=t.createLinearGradient(0,0,0,i),s.addColorStop(0,"#444"),s.addColorStop(.5,"#AAA"),s.addColorStop(.5,"#444"),s.addColorStop(1,"#111");break;',
         'carbon:"Carbon"',
       ];
+        const malaor = localStorage.getItem("malaor");
       const additions = [
         'case"x27":this.buildX27Material();break;case"fullcool":this.buildFullColorMaterial();break;case"dimamond":this.buildDiamondMaterial();break;case"fx27":this.buildfX27Material();break;case"blackmonk":this.buildmonkMaterial();break;',
-        `t.prototype.buildfX27Material=function(){return this.material=new THREE.MeshPhongMaterial({map:I1l0O,bumpMap:I1l0O,specularMap:I1l0O,specular:6316128,shininess:30,bumpScale:.1,color:${malaor},emissive:l11OO.hsvToRgbHex(this.hue,.5,1),emissiveMap:OOOO0})},t.prototype.buildX27Material=function(){return this.material=new THREE.MeshPhongMaterial({map:I1l0O,bumpMap:I1l0O,specularMap:I1l0O,specular:4243711,shininess:30,bumpScale:.1,color:5275808,emissive:l11OO.hsvToRgbHex(this.hue,.5,1),emissiveMap:OOOO0})},t.prototype.buildFullColorMaterial=function(){var t;return t=OlIl0.hsvToRgbHex(this.hue,1,1),this.material=new THREE.MeshPhongMaterial({map:OOO0I,bumpMap:OOO0I,specularMap:OOO0I,specular:12632256,shininess:50,bumpScale:.1,color:t,emissive:OlIl0.hsvToRgbHex(this.hue,.5,1),emissiveMap:II1ll})},t.prototype.buildDiamondMaterial=function(){return this.material=new THREE.MeshPhongMaterial({map:OOO0I,bumpMap:OOO0I,specular:16777215,opacity:.5,shininess:50,side:THREE.DoubleSide,bumpScale:.1,transparent:!0,color:8421504,emissive:OlIl0.hsvToRgbHex(this.hue,.5,1),emissiveMap:II1ll})},t.prototype.buildmonkMaterial=function(){return this.material=new THREE.MeshPhongMaterial({map:I1l0O,bumpMap:I1l0O,specular:0,shininess:0,bumpScale:.1,color:0,emissive:l11OO.hsvToRgbHex(this.hue,.5,1),emissiveMap:OIO10})},`,
-        'case"x27":s=t.createLinearGradient(0,0,0,i),s.addColorStop(0,"hsla(220,100%,30%)"),s.addColorStop(.5,"hsla(200,100%,70%)"),s.addColorStop(.5,"hsla(220,100%,40%)"),s.addColorStop(1,"hsla(200,100%,70%)");break;case"fx27":s=t.createLinearGradient(0,0,0,i),s.addColorStop(0,"' +
-          darkenColor(malaor, 90) +
-          '"),s.addColorStop(.5,"' +
-          malaor +
-          '"),s.addColorStop(.5,"' +
-          darkenColor(malaor, 60) +
-          '"),s.addColorStop(1,"' +
-          darkenColor(malaor, 30) +
-          '");break;case"fullcool":s=t.createLinearGradient(0,0,0,i),s.addColorStop(0,"hsl(" + this.hue + ",90%,50%)"),s.addColorStop(.5,"hsl(" + this.hue + ",90%,70%)"),s.addColorStop(.5,"hsl(" + this.hue + ",90%,30%)"),s.addColorStop(1,"hsl(" + this.hue + ",90%,60%)");break;case"dimamond":for(s=t.createLinearGradient(0,0,0,i),h=Math.min(10,this.size/10),n=a=0,u=h-1;a<=u;n=a+=1)s.addColorStop(n/h,"#757575"),s.addColorStop((n+1)/h,"#222");for(l=t.createLinearGradient(0,0,0,i),l.addColorStop(0,"#ff0000"),l.addColorStop(.1,"#ff0000"),n=o=0,d=h-1;o<=d;n=o+=1)l.addColorStop((n+.5)/h,"#ff0000"),l.addColorStop(Math.min(1,(n+1.5)/h),"#ff0000");break;case"blackmonk":for(s=t.createLinearGradient(0,0,0,i),h=Math.min(10,this.size/10),l=a=0,u=h-1;a<=u;l=a+=1)s.addColorStop(l/h,"#000"),s.addColorStop((l+1)/h,"#2c2c2c");for(n=t.createLinearGradient(0,0,0,i),n.addColorStop(0,"#181818"),n.addColorStop(.1,"#2c2c2c"),l=o=0,d=h-1;o<=d;l=o+=1)n.addColorStop((l+.5)/h,"#000"),n.addColorStop(Math.min(1,(l+1.5)/h),"#2c2c2c");break;',
+        `t.prototype.buildfX27Material=function(){return this.material=new THREE.MeshPhongMaterial({map:I1l0O,bumpMap:I1l0O,specularMap:I1l0O,specular:16742012,shininess:30,bumpScale:.1,color:"${malaor}",emissive:l11OO.hsvToRgbHex(this.hue,.5,1),emissiveMap:OOOO0})},t.prototype.buildX27Material=function(){return this.material=new THREE.MeshPhongMaterial({map:I1l0O,bumpMap:I1l0O,specularMap:I1l0O,specular:4243711,shininess:30,bumpScale:.1,color:5275808,emissive:l11OO.hsvToRgbHex(this.hue,.5,1),emissiveMap:OOOO0})},t.prototype.buildFullColorMaterial=function(){var t;return t=OlIl0.hsvToRgbHex(this.hue,1,1),this.material=new THREE.MeshPhongMaterial({map:OOO0I,bumpMap:OOO0I,specularMap:OOO0I,specular:12632256,shininess:50,bumpScale:.1,color:t,emissive:OlIl0.hsvToRgbHex(this.hue,.5,1),emissiveMap:II1ll})},t.prototype.buildDiamondMaterial=function(){return this.material=new THREE.MeshPhongMaterial({map:OOO0I,bumpMap:OOO0I,specular:16777215,opacity:.5,shininess:50,side:THREE.DoubleSide,bumpScale:.1,transparent:!0,color:8421504,emissive:OlIl0.hsvToRgbHex(this.hue,.5,1),emissiveMap:II1ll})},t.prototype.buildmonkMaterial=function(){return this.material=new THREE.MeshPhongMaterial({map:I1l0O,bumpMap:I1l0O,specular:0,shininess:0,bumpScale:.1,color:0,emissive:l11OO.hsvToRgbHex(this.hue,.5,1),emissiveMap:OIO10})},`,
+        'case"fx27":s=t.createLinearGradient(0,0,0,i),s.addColorStop(0,"' + darkenColor(malaor, 80) + '"),s.addColorStop(.5,"' + malaor + '"),s.addColorStop(.5,"' + darkenColor(malaor, 60) + '"),s.addColorStop(1,"' + darkenColor(malaor, 30) + '");break;case"x27":s=t.createLinearGradient(0,0,0,i),s.addColorStop(0,"hsla(220,100%,30%)"),s.addColorStop(.5,"hsla(200,100%,70%)"),s.addColorStop(.5,"hsla(220,100%,40%)"),s.addColorStop(1,"hsla(200,100%,70%)");break;case"fullcool":s=t.createLinearGradient(0,0,0,i),s.addColorStop(0,"hsl(" + this.hue + ",90%,50%)"),s.addColorStop(.5,"hsl(" + this.hue + ",90%,70%)"),s.addColorStop(.5,"hsl(" + this.hue + ",90%,30%)"),s.addColorStop(1,"hsl(" + this.hue + ",90%,60%)");break;case"dimamond":for(s=t.createLinearGradient(0,0,0,i),h=Math.min(10,this.size/10),n=a=0,u=h-1;a<=u;n=a+=1)s.addColorStop(n/h,"#757575"),s.addColorStop((n+1)/h,"#222");for(l=t.createLinearGradient(0,0,0,i),l.addColorStop(0,"#ff0000"),l.addColorStop(.1,"#ff0000"),n=o=0,d=h-1;o<=d;n=o+=1)l.addColorStop((n+.5)/h,"#ff0000"),l.addColorStop(Math.min(1,(n+1.5)/h),"#ff0000");break;case"blackmonk":for(s=t.createLinearGradient(0,0,0,i),h=Math.min(10,this.size/10),l=a=0,u=h-1;a<=u;l=a+=1)s.addColorStop(l/h,"#000"),s.addColorStop((l+1)/h,"#2c2c2c");for(n=t.createLinearGradient(0,0,0,i),n.addColorStop(0,"#181818"),n.addColorStop(.1,"#2c2c2c"),l=o=0,d=h-1;o<=d;l=o+=1)n.addColorStop((l+.5)/h,"#000"),n.addColorStop(Math.min(1,(l+1.5)/h),"#2c2c2c");break;',
         ',x27:"Electric Blue",fullcool:"Full Color",dimamond:"Diamond",fx27:"Custom Material",blackmonk:"Ultra Carbon"',
       ];
       for (let i = 0; i < substrings.length; i++) {
@@ -256,7 +227,7 @@ function injectLoader() {
       //Client Settings
       let scibidy = document.createElement("script");
       scibidy.src =
-        "https://cdn.jsdelivr.net/gh/officialtroller/starblast-things/settingatba.js";
+        "https://cdn.jsdelivr.net/gh/officialtroller/starblast-things/settingstablablarus.js";
       document.body.appendChild(scibidy);
       //Badge Manager
       let sibiti = document.createElement("script");
