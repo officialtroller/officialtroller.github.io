@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Troll Client
-// @version      0.3.6
+// @version      1.0.0
 // @description  Troll Client
 // @author       official_troller
 // @license      GPL-3.0
@@ -10,7 +10,7 @@
 // @updateURL    https://officialtroller.github.io/ecp-generator/js/surv.user.js
 // @downloadURL  https://officialtroller.github.io/ecp-generator/js/surv.user.js
 // ==/UserScript==
-const CURRENT_RUNNING_VERSION = "0.3.6";
+const CURRENT_RUNNING_VERSION = "1.0.0";
 const log = (msg) => console.log(`%c[Troll Client] ${msg}`, "color: #ffff00");
 const modlog = (msg) => console.log(`%c[Mod] ${msg}`, "color: #FF00A6");
 const stylelog = (msg) => console.log(`%c[Style] ${msg}`, "color: #06c26d");
@@ -49,6 +49,10 @@ function injectLoader() {
 
             if (localStorage.getItem("gemindeed") === null) {
                 localStorage.setItem("gemindeed", "#ff0000");
+            }
+
+            if (localStorage.getItem("gemindeed1") === null) {
+                localStorage.setItem("gemindeed1", "#ff0000");
             }
             const start_time = performance.now();
 
@@ -143,7 +147,7 @@ function injectLoader() {
             const additions = [
         'case"x27":this.buildX27Material();break;case"fullcool":this.buildFullColorMaterial();break;case"dimamond":this.buildDiamondMaterial();break;case"fx27":this.buildfX27Material();break;case"blackmonk":this.buildmonkMaterial();break;'
         , `t.prototype.buildfX27Material=function(){return this.material=new THREE.MeshPhongMaterial({map:I1l0O,bumpMap:I1l0O,specularMap:I1l0O,specular:16742012,shininess:10,bumpScale:.1,color:"${malaor}",emissive:l11OO.hsvToRgbHex(this.hue,.5,1),emissiveMap:OIO10})},t.prototype.buildX27Material=function(){return this.material=new THREE.MeshPhongMaterial({map:I1l0O,bumpMap:I1l0O,specularMap:I1l0O,specular:4243711,shininess:30,bumpScale:.1,color:5275808,emissive:l11OO.hsvToRgbHex(this.hue,.5,1),emissiveMap:OOOO0})},t.prototype.buildFullColorMaterial=function(){var t;return t=OlIl0.hsvToRgbHex(this.hue,1,1),this.material=new THREE.MeshPhongMaterial({map:OOO0I,bumpMap:OOO0I,specularMap:OOO0I,specular:12632256,shininess:50,bumpScale:.1,color:t,emissive:OlIl0.hsvToRgbHex(this.hue,.5,1),emissiveMap:II1ll})},t.prototype.buildDiamondMaterial=function(){return this.material=new THREE.MeshPhongMaterial({map:OOO0I,bumpMap:OOO0I,specular:16777215,opacity:.5,shininess:50,side:THREE.DoubleSide,bumpScale:.1,transparent:!0,color:8421504,emissive:OlIl0.hsvToRgbHex(this.hue,.5,1),emissiveMap:II1ll})},t.prototype.buildmonkMaterial=function(){return this.material=new THREE.MeshPhongMaterial({map:I1l0O,bumpMap:I1l0O,specular:0,shininess:0,bumpScale:.1,color:0,emissive:l11OO.hsvToRgbHex(this.hue,.5,1),emissiveMap:OIO10})},`
-        , 'case"fx27":s=t.createLinearGradient(0,0,0,i),s.addColorStop(0,"' + darkenColor(malaor, 80) + '"),s.addColorStop(.5,"' + malaor + '"),s.addColorStop(.5,"' + darkenColor(malaor, 60) + '"),s.addColorStop(1,"' + darkenColor(malaor, 30) + '");break;case"x27":s=t.createLinearGradient(0,0,0,i),s.addColorStop(0,"hsla(220,100%,30%)"),s.addColorStop(.5,"hsla(200,100%,70%)"),s.addColorStop(.5,"hsla(220,100%,40%)"),s.addColorStop(1,"hsla(200,100%,70%)");break;case"fullcool":s=t.createLinearGradient(0,0,0,i),s.addColorStop(0,"hsl(" + this.hue + ",90%,50%)"),s.addColorStop(.5,"hsl(" + this.hue + ",90%,70%)"),s.addColorStop(.5,"hsl(" + this.hue + ",90%,30%)"),s.addColorStop(1,"hsl(" + this.hue + ",90%,60%)");break;case"dimamond":for(s=t.createLinearGradient(0,0,0,i),h=Math.min(10,this.size/10),n=a=0,u=h-1;a<=u;n=a+=1)s.addColorStop(n/h,"#757575"),s.addColorStop((n+1)/h,"#222");for(l=t.createLinearGradient(0,0,0,i),l.addColorStop(0,"#ff0000"),l.addColorStop(.1,"#ff0000"),n=o=0,d=h-1;o<=d;n=o+=1)l.addColorStop((n+.5)/h,"#ff0000"),l.addColorStop(Math.min(1,(n+1.5)/h),"#ff0000");break;case"blackmonk":for(s=t.createLinearGradient(0,0,0,i),h=Math.min(10,this.size/10),l=a=0,u=h-1;a<=u;l=a+=1)s.addColorStop(l/h,"#000"),s.addColorStop((l+1)/h,"#2c2c2c");for(n=t.createLinearGradient(0,0,0,i),n.addColorStop(0,"#181818"),n.addColorStop(.1,"#2c2c2c"),l=o=0,d=h-1;o<=d;l=o+=1)n.addColorStop((l+.5)/h,"#000"),n.addColorStop(Math.min(1,(l+1.5)/h),"#2c2c2c");break;'
+        , 'case"fx27":s=t.createLinearGradient(0,0,0,i),s.addColorStop(0,"' + darkenColor(malaor, 50) + '"),s.addColorStop(.5,"' + malaor + '"),s.addColorStop(.5,"' + darkenColor(malaor, 30) + '"),s.addColorStop(1,"' + darkenColor(malaor, 10) + '");break;case"x27":s=t.createLinearGradient(0,0,0,i),s.addColorStop(0,"hsla(220,100%,30%)"),s.addColorStop(.5,"hsla(200,100%,70%)"),s.addColorStop(.5,"hsla(220,100%,40%)"),s.addColorStop(1,"hsla(200,100%,70%)");break;case"fullcool":s=t.createLinearGradient(0,0,0,i),s.addColorStop(0,"hsl(" + this.hue + ",90%,50%)"),s.addColorStop(.5,"hsl(" + this.hue + ",90%,70%)"),s.addColorStop(.5,"hsl(" + this.hue + ",90%,30%)"),s.addColorStop(1,"hsl(" + this.hue + ",90%,60%)");break;case"dimamond":for(s=t.createLinearGradient(0,0,0,i),h=Math.min(10,this.size/10),n=a=0,u=h-1;a<=u;n=a+=1)s.addColorStop(n/h,"#757575"),s.addColorStop((n+1)/h,"#222");for(l=t.createLinearGradient(0,0,0,i),l.addColorStop(0,"#ff0000"),l.addColorStop(.1,"#ff0000"),n=o=0,d=h-1;o<=d;n=o+=1)l.addColorStop((n+.5)/h,"#ff0000"),l.addColorStop(Math.min(1,(n+1.5)/h),"#ff0000");break;case"blackmonk":for(s=t.createLinearGradient(0,0,0,i),h=Math.min(10,this.size/10),l=a=0,u=h-1;a<=u;l=a+=1)s.addColorStop(l/h,"#000"),s.addColorStop((l+1)/h,"#2c2c2c");for(n=t.createLinearGradient(0,0,0,i),n.addColorStop(0,"#181818"),n.addColorStop(.1,"#2c2c2c"),l=o=0,d=h-1;o<=d;l=o+=1)n.addColorStop((l+.5)/h,"#000"),n.addColorStop(Math.min(1,(l+1.5)/h),"#2c2c2c");break;'
         , ',x27:"Electric Blue",fullcool:"Full Color",dimamond:"Diamond",fx27:"Custom Material",blackmonk:"Ultra Carbon"'
       , ];
             for (let i = 0; i < substrings.length; i++) {
@@ -255,10 +259,10 @@ function injectLoader() {
             }
             modlog("Badges added");
             //Client Settings
-            let scibidy = document.createElement("script");
+            /*let scibidy = document.createElement("script");
             scibidy.src =
                 "https://cdn.jsdelivr.net/gh/officialtroller/starblast-things/settingstablablarus.js";
-            document.body.appendChild(scibidy);
+            document.body.appendChild(scibidy);*/
             //Badge Manager
             let sibiti = document.createElement("script");
             sibiti.src =
@@ -270,6 +274,7 @@ function injectLoader() {
             const leaderunde = localStorage.getItem("leaderunde");
             const get = localStorage.getItem("emopacity");
             const gemslol = localStorage.getItem("gemindeed");
+            const gemslol1 = localStorage.getItem("gemindeed1");
             const blurdes = localStorage.getItem("blurdes");
             const stationisten = localStorage.getItem("stationisten");
             const weaponisten = localStorage.getItem("weaponisten");
@@ -312,6 +317,7 @@ function injectLoader() {
 
             if (gemslol) {
                 starSRC = starSRC.replace(/16711680/g, `"${gemslol}"`);
+                starSRC = starSRC.replace(/specular:16744576/g, `specular:"${gemslol1}"`);
                 modlog("Crystal Color changed");
             }
 
@@ -433,6 +439,454 @@ function injectLoader() {
                 };
 
                 plaything.addEventListener("click", onGameStart);
+                console.log("Settings loaded");
+
+var socialDie1 = document.querySelector(".social");
+
+if (socialDie1) {
+  var loveIcon = document.createElement("i");
+  loveIcon.className = "sbg sbg-menu";
+  socialDie1.appendChild(loveIcon);
+  var settingstab = null;
+
+  loveIcon.addEventListener("mousedown", function (event) {
+    if (!settingstab) {
+      //settings tab
+      console.log("Settings opened");
+      settingstab = document.createElement("div");
+      settingstab.id = "settings-manager";
+      settingstab.style.width = "500px";
+      settingstab.style.background = "hsla(60, 100%, 50%, 0.3)";
+      settingstab.style.borderRadius = "20px";
+      settingstab.style.padding = "40px";
+      settingstab.style.boxShadow = "0 0 10px rgba(0,0,0,.3)";
+      settingstab.style.position = "fixed";
+      settingstab.style.left = "50%";
+      settingstab.style.top = "50%";
+      settingstab.style.transform = "translate(-50%, -50%)";
+      settingstab.style.backdropFilter = "blur(5px)";
+      settingstab.style.webkitBackdropFilter = "blur(5px)";
+      settingstab.style.zIndex = "9999";
+      settingstab.style.display = "none";
+      let offsetX,
+        offsetY,
+        isDragging = false;
+      settingstab.addEventListener("mousedown", (e) => {
+        const target = e.target;
+
+        if (
+          target.tagName !== "INPUT" &&
+          target.tagName !== "BUTTON" &&
+          target.type !== "color" &&
+          target.type !== "range" &&
+          target.type !== "checkbox"
+        ) {
+          isDragging = true;
+          offsetX =
+            e.clientX -
+            (settingstab.getBoundingClientRect().left +
+              settingstab.offsetWidth / 2);
+          offsetY =
+            e.clientY -
+            (settingstab.getBoundingClientRect().top +
+              settingstab.offsetHeight / 2);
+        }
+      });
+
+      document.addEventListener("mousemove", (e) => {
+        if (!isDragging) return;
+
+        const x = e.clientX - offsetX;
+        const y = e.clientY - offsetY;
+
+        settingstab.style.left = `${x}px`;
+        settingstab.style.top = `${y}px`;
+      });
+
+      document.addEventListener("mouseup", () => {
+        isDragging = false;
+      });
+      //close button
+      var closeButtonTopRight1 = document.createElement("button");
+      closeButtonTopRight1.textContent = "X";
+      closeButtonTopRight1.style.position = "absolute";
+      closeButtonTopRight1.style.top = "10px";
+      closeButtonTopRight1.style.right = "10px";
+      closeButtonTopRight1.style.userSelect = "none";
+      closeButtonTopRight1.addEventListener("click", function (event) {
+        event.stopPropagation();
+        settingstab.remove();
+        settingstab = null;
+      });
+      settingstab.appendChild(closeButtonTopRight1);
+      //header
+      var header = document.createElement("h2");
+      header.innerText = "Client Settings";
+      header.style.userSelect = "none";
+      header.style.pointerEvents = "none";
+      settingstab.appendChild(header);
+      //Lowercase Name
+      var lwerlol = document.createElement("input");
+      lwerlol.type = "checkbox";
+      lwerlol.id = "lowercaseName";
+      var lowerlol = document.createElement("label");
+      lowerlol.htmlFor = "lowercaseName";
+      lowerlol.appendChild(document.createTextNode("Lowercase Name"));
+      lowerlol.style.userSelect = "none";
+      lowerlol.style.pointerEvents = "none";
+      //Uncover Leader
+      var checkleader = document.createElement("input");
+      checkleader.type = "checkbox";
+      checkleader.id = "uncoverLeader";
+      var label1 = document.createElement("label");
+      label1.htmlFor = "uncoverLeader";
+      label1.appendChild(document.createTextNode("Uncover Leader"));
+      label1.style.userSelect = "none";
+      label1.style.pointerEvents = "none";
+      var br1 = document.createElement("br");
+      br1.style.userSelect = "none";
+      br1.style.pointerEvents = "none";
+      //example mod
+      var emablemod = document.createElement("input");
+      emablemod.type = "checkbox";
+      emablemod.id = "exampleMod";
+      var label2 = document.createElement("label");
+      label2.htmlFor = "exampleMod";
+      label2.appendChild(document.createTextNode("Example Mod"));
+      label2.style.userSelect = "none";
+      label2.style.pointerEvents = "none";
+      //Blur Option
+      var blurlol = document.createElement("input");
+      blurlol.type = "checkbox";
+      blurlol.id = "blurlol";
+      var brurwha = document.createElement("label");
+      brurwha.htmlFor = "blurlol";
+      brurwha.appendChild(document.createTextNode("Blur"));
+      brurwha.style.userSelect = "none";
+      brurwha.style.pointerEvents = "none";
+      //Remove Timer
+      var bebotmber = document.createElement("input");
+      bebotmber.type = "checkbox";
+      bebotmber.id = "removeTimer";
+      var label3 = document.createElement("label");
+      label3.htmlFor = "removeTimer";
+      label3.appendChild(document.createTextNode("Remove Timer"));
+      label3.style.userSelect = "none";
+      label3.style.pointerEvents = "none";
+      //Custom Station Modules
+      var molds = document.createElement("input");
+      molds.type = "checkbox";
+      molds.id = "stationists";
+      var modls = document.createElement("label");
+      modls.htmlFor = "stationists";
+      modls.appendChild(document.createTextNode("Custom Station Modules"));
+      modls.style.userSelect = "none";
+      modls.style.pointerEvents = "none";
+      //Custom Weapon Modules
+      var morlds = document.createElement("input");
+      morlds.type = "checkbox";
+      morlds.id = "weaponists";
+      var mordls = document.createElement("label");
+      mordls.htmlFor = "weaponists";
+      mordls.appendChild(document.createTextNode("Custom Weapon Modules"));
+      mordls.style.userSelect = "none";
+      mordls.style.pointerEvents = "none";
+      //Voice Chat
+      var oiceat = document.createElement("input");
+      oiceat.type = "checkbox";
+      oiceat.id = "voicechat";
+      var voias = document.createElement("label");
+      voias.htmlFor = "voicechat";
+      voias.appendChild(document.createTextNode("Voice Chat"));
+      voias.style.userSelect = "none";
+      voias.style.pointerEvents = "none";
+      //Blank Badges
+      var ankages = document.createElement("input");
+      ankages.type = "checkbox";
+      ankages.id = "blankbadge";
+      var anges = document.createElement("label");
+      anges.htmlFor = "blankbadge";
+      anges.appendChild(document.createTextNode("Blank Badges"));
+      anges.style.userSelect = "none";
+      anges.style.pointerEvents = "none";
+      //Emotes
+      var ebot = document.createElement("label");
+      ebot.htmlFor = "emoteCapacity";
+      ebot.classList.add("emote-label");
+      ebot.style.userSelect = "none";
+      ebot.style.pointerEvents = "none";
+      ebot.htmlFor = "emoteCapacity";
+      ebot.appendChild(document.createTextNode("Emote Capacity:"));
+      var ebote = document.createElement("span");
+      ebote.id = "emoteCapacityValue";
+      ebote.classList.add("emote-value");
+      ebote.appendChild(document.createTextNode("1"));
+      ebote.style.userSelect = "none";
+      ebote.style.pointerEvents = "none";
+      var eboti = document.createElement("input");
+      eboti.type = "range";
+      eboti.id = "emoteCapacity";
+      eboti.min = "1";
+      eboti.max = "5";
+      eboti.classList.add("emote-slider");
+      //Gem Color
+      var gemus = document.createElement("label");
+      gemus.htmlFor = "gemColor";
+      gemus.classList.add("color-label");
+      gemus.style.userSelect = "none";
+      gemus.style.pointerEvents = "none";
+      gemus.appendChild(document.createTextNode("Gem Color:"));
+      var gembus = document.createElement("input");
+      gembus.type = "color";
+      gembus.id = "gemColor";
+      gembus.classList.add("color-input");
+      //Gem Color 2
+      var gemobus = document.createElement("label");
+      gemobus.htmlFor = "gemColor1";
+      gemobus.classList.add("color-label");
+      gemobus.style.userSelect = "none";
+      gemobus.style.pointerEvents = "none";
+      gemobus.appendChild(document.createTextNode("Gem Color 2:"));
+      var gembomus = document.createElement("input");
+      gembomus.type = "color";
+      gembomus.id = "gemColor1";
+      gembomus.classList.add("color-input");
+      //Material Color
+      var matus = document.createElement("label");
+      matus.htmlFor = "matcolor";
+      matus.classList.add("color-label");
+      matus.style.userSelect = "none";
+      matus.style.pointerEvents = "none";
+      matus.appendChild(document.createTextNode("Material Color:"));
+      var matbus = document.createElement("input");
+      matbus.type = "color";
+      matbus.id = "matcolor";
+      matbus.classList.add("color-input");
+      //apply button
+      var applythng = document.createElement("button");
+      applythng.id = "applyChangesBtn";
+      applythng.innerHTML = "Apply Changes";
+      applythng.style.padding = "6px 10px";
+      applythng.style.fontSize = ".95vw";
+      applythng.style.cursor = "pointer";
+      applythng.style.margin = "5px 0 0 0";
+      applythng.style.textAlign = "center";
+      applythng.style.background =
+        "radial-gradient(ellipse at center, hsla(60,50%,0%,1) 0, hsla(60,100%,70%,.5) 150%)";
+      applythng.style.boxShadow = "0 0 6px hsla(60,100%,80%,1)";
+      applythng.style.textShadow = "0 0 7px hsla(60,100%,80%,1)";
+      applythng.style.color = "hsla(60,100%,90%,.8)";
+      applythng.style.fontFamily = "Play, Verdana";
+      applythng.style.border = "0";
+      applythng.style.borderRadius = "20px";
+
+      //apply things to the Settings Menu
+      settingstab.appendChild(lwerlol);
+      settingstab.appendChild(lowerlol);
+      settingstab.appendChild(br1.cloneNode());
+      settingstab.appendChild(molds);
+      settingstab.appendChild(modls);
+      settingstab.appendChild(br1.cloneNode());
+      settingstab.appendChild(morlds);
+      settingstab.appendChild(mordls);
+      settingstab.appendChild(br1.cloneNode());
+      settingstab.appendChild(oiceat);
+      settingstab.appendChild(voias);
+      settingstab.appendChild(br1.cloneNode());
+      settingstab.appendChild(ankages);
+      settingstab.appendChild(anges);
+      settingstab.appendChild(br1.cloneNode());
+      settingstab.appendChild(checkleader);
+      settingstab.appendChild(label1);
+      settingstab.appendChild(br1.cloneNode());
+      settingstab.appendChild(blurlol);
+      settingstab.appendChild(brurwha);
+      settingstab.appendChild(br1.cloneNode());
+      settingstab.appendChild(emablemod);
+      settingstab.appendChild(label2);
+      settingstab.appendChild(br1.cloneNode());
+      settingstab.appendChild(bebotmber);
+      settingstab.appendChild(label3);
+      settingstab.appendChild(br1.cloneNode());
+      settingstab.appendChild(ebot);
+      settingstab.appendChild(ebote);
+      settingstab.appendChild(eboti);
+      settingstab.appendChild(br1.cloneNode());
+      settingstab.appendChild(gemus);
+      settingstab.appendChild(gembus);
+      settingstab.appendChild(br1.cloneNode());
+      settingstab.appendChild(gemobus);
+      settingstab.appendChild(gembomus);
+      settingstab.appendChild(br1.cloneNode());
+      settingstab.appendChild(matus);
+      settingstab.appendChild(matbus);
+      settingstab.appendChild(br1.cloneNode());
+      settingstab.appendChild(applythng);
+      //apply Settings Menu to game
+      document.body.appendChild(settingstab);
+      settingstab.style.display = "block";
+      loadSettings();
+      attachEventListeners();
+    }
+  });
+}
+function attachEventListeners() {
+  var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+  checkboxes.forEach(function (checkbox) {
+    checkbox.addEventListener("change", function () {
+      saveSetting(checkbox.id, checkbox.checked);
+    });
+  });
+
+  var rangeInput = document.getElementById("emoteCapacity");
+  if (rangeInput) {
+    rangeInput.addEventListener("input", function () {
+      saveSetting("emoteCapacity", Number(rangeInput.value));
+      document.getElementById("emoteCapacityValue").textContent =
+        rangeInput.value;
+    });
+    rangeInput.value = getSettingValue("emoteCapacity");
+    document.getElementById("emoteCapacityValue").textContent =
+      rangeInput.value;
+  }
+
+  var colorInput = document.getElementById("gemColor");
+  if (colorInput) {
+    colorInput.addEventListener("input", function () {
+      saveSetting("gemColor", colorInput.value);
+    });
+    colorInput.value = getSettingValue("gemColor");
+  }
+  var colorInput2 = document.getElementById("gemColor1");
+  if (colorInput2) {
+    colorInput2.addEventListener("input", function () {
+      saveSetting("gemColor1", colorInput2.value);
+    });
+    colorInput2.value = getSettingValue("gemColor1");
+  }
+
+  var color1Input = document.getElementById("matcolor");
+  if (color1Input) {
+    color1Input.addEventListener("input", function () {
+      saveSetting("matcolor", color1Input.value);
+    });
+    color1Input.value = getSettingValue("matcolor");
+  }
+
+  var applyChangesBtn = document.getElementById("applyChangesBtn");
+  if (applyChangesBtn) {
+    applyChangesBtn.addEventListener("click", function () {
+      saveSetting();
+      location.reload();
+    });
+  }
+}
+
+function loadSettings() {
+  var settings = [
+    "uncoverLeader",
+    "exampleMod",
+    "removeTimer",
+    "emoteCapacity",
+    "gemColor",
+    "gemColor1",
+    "lowercaseName",
+    "blurlol",
+    "stationists",
+    "weaponists",
+    "voicechat",
+    "blankbadge",
+    "matcolor",
+  ];
+
+  settings.forEach(function (setting) {
+    var key = getKey(setting);
+    var value = localStorage.getItem(key);
+    if (value !== null) {
+      if (setting === "emoteCapacity") {
+        document.getElementById(setting).value = value;
+        document.getElementById("emoteCapacityValue").textContent = value;
+      } else if (setting === "gemColor") {
+        document.getElementById(setting).value = value;
+      } else if (setting === "gemColor1") {
+        document.getElementById(setting).value = value;
+      } else if (setting === "matcolor") {
+        document.getElementById(setting).value = value;
+      } else {
+        document.getElementById(setting).checked = JSON.parse(value);
+      }
+    }
+  });
+}
+
+function saveSetting(setting, value) {
+  var key = getKey(setting);
+  if (setting === "gemColor") {
+    localStorage.setItem(key, value);
+  } else if (setting === "gemColor1") {
+    localStorage.setItem(key, value);
+  } else if (setting === "matcolor") {
+    localStorage.setItem(key, value);
+  } else {
+    localStorage.setItem(key, JSON.stringify(value));
+  }
+}
+
+function getKey(setting) {
+  switch (setting) {
+    case "weaponists":
+      return "weaponisten";
+    case "stationists":
+      return "stationisten";
+    case "blurlol":
+      return "blurdes";
+    case "uncoverLeader":
+      return "leaderunde";
+    case "exampleMod":
+      return "noobus";
+    case "emoteCapacity":
+      return "emopacity";
+    case "gemColor":
+      return "gemindeed";
+    case "gemColor1":
+      return "gemindeed1";
+    case "matcolor":
+      return "malaor";
+    case "lowercaseName":
+      return "lownamecase";
+    case "removeTimer":
+      return "timdel";
+    case "voicechat":
+      return "oiceat";
+    case "blankbadge":
+      return "goodles";
+    default:
+      return setting;
+  }
+}
+
+function getSettingValue(setting) {
+  var key = getKey(setting);
+  var value = localStorage.getItem(key);
+
+  if (setting === "emoteCapacity") {
+    if (value === null) {
+      localStorage.setItem(key, 4);
+      return 4;
+    } else {
+      return Number(value);
+    }
+  } else if (setting === "gemColor") {
+    return value || "#ff0000";
+  } else if (setting === "gemColor1") {
+    return value || "#ff0000";
+  } else if (setting === "matcolor") {
+    return value || "#ff0000";
+  }
+
+  return value ? JSON.parse(value) : false;
+}
+
 
                 stylelog(`Css applied`);
                 stylelog(`Settings added`);
