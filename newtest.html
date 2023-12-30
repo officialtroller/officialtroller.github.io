@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello World</title>
+</head>
+<body>
+    <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center;">
+        <h1>Hello World</h1>
+    </div>
+
+    <script>
+        // Replace 'YOUR_CLIENT_ID' with the actual client ID
+        const clientId = '1189341514002862110';
+
+        document.addEventListener('DOMContentLoaded', () => {
+            setRichPresence();
+        });
+
+        function setRichPresence() {
+            // Replace the following values with your desired rich presence details
+            const presenceData = {
+                details: 'in starblast.io',
+                state: 'Enjoying it',
+                largeImageKey: 'sbbeta',
+                startTimestamp: Math.floor(Date.now() / 1000),
+                instance: false,
+            };
+
+            // Set rich presence using Discord API
+            if (typeof Discord !== 'undefined') {
+                const rpc = new Discord.Client({ transport: 'websocket' });
+                rpc.login({ clientId }).catch(console.error);
+
+                rpc.on('ready', () => {
+                    rpc.setActivity(presenceData);
+                });
+            } else {
+                console.error('Discord API not found. Make sure you are running this in a Discord-supported environment.');
+            }
+        }
+    </script>
+    
+    <!-- Discord API library -->
+    <script src="https://cdn.jsdelivr.net/npm/discord-rpc@4.0/browser.min.js"></script>
+</body>
+</html>
