@@ -11,38 +11,18 @@
     </div>
 
     <script>
-        // Replace 'YOUR_CLIENT_ID' with the actual client ID
-        const clientId = '1189341514002862110';
-
         document.addEventListener('DOMContentLoaded', () => {
-            setRichPresence();
+            updateRichPresence();
         });
 
-        function setRichPresence() {
-            // Replace the following values with your desired rich presence details
-            const presenceData = {
-                details: 'in starblast.io',
-                state: 'Enjoying it',
-                largeImageKey: 'sbbeta',
-                startTimestamp: Math.floor(Date.now() / 1000),
-                instance: false,
-            };
-
-            // Set rich presence using Discord API
-            if (typeof Discord !== 'undefined') {
-                const rpc = new Discord.Client({ transport: 'websocket' });
-                rpc.login({ clientId }).catch(console.error);
-
-                rpc.on('ready', () => {
-                    rpc.setActivity(presenceData);
-                });
-            } else {
-                console.error('Discord API not found. Make sure you are running this in a Discord-supported environment.');
+        async function updateRichPresence() {
+            try {
+                await fetch('http://localhost:3000/update-rich-presence');
+                console.log('Rich Presence updated successfully.');
+            } catch (error) {
+                console.error('Error updating Rich Presence:', error);
             }
         }
     </script>
-    
-    <!-- Discord API library -->
-    <script src="https://cdn.jsdelivr.net/npm/discord-rpc@4.0/browser.min.js"></script>
 </body>
 </html>
