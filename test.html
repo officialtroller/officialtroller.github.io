@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RPC Test</title>
+    <script src="https://cdn.jsdelivr.net/npm/discord-rpc@4.0.1/browser.min.js"></script>
+    <style>
+        header {
+            text-align: center;
+            font-size: large;
+        }
+        a {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <header>RPC Test</header>
+    <a>Might be Buggy</a>
+    <script>
+const rpc = new RPC.Client({
+    transport: 'websocket'
+});
+
+rpc.on('ready', () => {
+    console.log("Setting RPC activity...");
+    rpc.setActivity({
+        details: "viewing Homepage",
+        //state: "Streets searched",
+        largeImageKey: "sbbeta",
+        largeImageText: "Troll Client",
+        startTimestamp: Math.floor(Date.now() / 1000),
+        instance: false,
+        //partySize: 364,
+        //partyMax: 5253780,
+        buttons: [
+            {
+                label: 'play starblast.io',
+                url: 'https://starblast.io/'
+            },
+            {
+                label: 'Rick Roll',
+                url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'
+            }
+        ]
+    }).catch(console.error);
+});
+
+rpc.login({ clientId: '1190262987299246100' }).catch(console.error);
+rpc.on('error', (error) => {
+    console.error('RPC connection error:', error);
+});
+    </script>
+</body>
+</html>
