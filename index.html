@@ -1,173 +1,64 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<link href='https://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
-
-  <style>
-* { margin:0; padding:0; } 
-html, body { width:100%; height:100%; overflow: hidden;} 
-canvas { display:block; }
-#controls {
-  margin: 20px;
-  position: absolute;
-  top: 0; left: 0;
-  color: white;
-}
-
-body { font: 400 1em/1.5 "Neuton"; background: #090d00; color: rgba(255,255,255,.25); text-align: center; margin: 0 }
-
-p {
-	text-transform: uppercase;
-	letter-spacing: .5em;
-	display: inline-block;
-	border: 4px double rgba(255,255,255,.25);
-	border-width: 4px 0;
-	padding: 1.5em 0em;
-	position: absolute;
-	top: 3%;
-	left: 50%;
-	width: 40em;
-	margin: 0 0 0 -20em;
-}
-    span {
-  font: 700 4em/1 "Oswald", sans-serif;
-  letter-spacing: 0;
-  padding: .25em 0 .325em;
-  display: block;
-  margin: 0 auto;
-  text-shadow: 0 0 80px rgba(255,255,255,.5);
-  background: url(https://i.ibb.co/RDTnNrT/animated-text-fill.png) repeat-y; /* Überprüfen Sie die URL des Hintergrundbildes */
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  -webkit-animation: aitf 80s linear infinite;
-  -webkit-transform: translate3d(0,0,0);
-  -webkit-backface-visibility: hidden;
-}
-
-@-webkit-keyframes aitf {
-  0% { background-position: 0% 50%; }
-  100% { background-position: 100% 50%; }
-}
-
-#betas {
-    letter-spacing: .3em;
-	display: inline-block;
-	padding: 1.5em 0em;
-	position: absolute;
-	top: 90%;
-	left: 50%;
-	width: 40em;
-	margin: 0 0 0 -20em;
-}
-
-#layout1, #layout2 {
-    letter-spacing: .2em;
-    color: grey;
-}
-  </style>
+    <meta charset="UTF-8" />
+    <title>Home</title>
+    <link href='https://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="index.css">
+    <link rel="icon" type="image/png" href="src/img/logo_round.png" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
+
 <body>
-    <div id="controls">
+    <div id='stars'></div>
+    <div id='stars2'></div>
+    <div id='stars3'></div>
+
+    <div class="centered" id="title">
+        <img id="logo" src="src/img/logo.png" style="height: 100px; width: 100px;">
+        <span>official_troller</span>
+        <div class="links">
+            <a id="youtube" href="https://www.youtube.com/@officialtroller5425"><i
+                    class="fab fa-youtube"></i>YouTube</a>
+            <a id="github" href="https://github.com/officialtroller"><i class="fab fa-github"></i>GitHub</a>
+            <a id="discord" href="https://discord.gg/JFCXza3tnd"><i class="fab fa-discord"></i>Discord</a>
+        </div>
+    </div>
+    <div class="links1 centered">
+        <div class="dcbot">
+            <div class="flip-container">
+                <div class="front">
+                    <header>Discord<br>Auto Mod<br>Bot</header>
+                </div>
+                <div class="back">
+                    <span>Auto Mod</span>
+                    <p>Uses Discord.JS v14</p>
+                    <p>easy to setup</p>
+                    <p>simple to use</p>
+                    <img src="src/img/ban.png" height="50px">
+                    <a href="https://github.com/officialtroller/automodbot/">Read More ></a>
+                </div>
+            </div>
+        </div>
+        <div class="ytapp">
+            <div class="flip-container">
+                <div class="front">
+                    <header>Youtube Music<br>Application</header>
+                </div>
+                <div class="back">
+                    <span>YouTube</span>
+                    <p>discord activity</p>
+                    <p>easy to use</p>
+                    <p>electron v32</p>
+                    <img src="src/img/rpc.png" height="50px">
+                    <a href="https://github.com/officialtroller/youtube-music-application">Read More ></a>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <p>
-        Beta Projects
-        <span>
-          In Development
-        </span>
-        &mdash; for my Website &mdash;
-      </p>
-      <div id="betas">
-        <h1 id="layout0" href="#">Visit other Styles</h1>
-        <a id="layout1" href="https://officialtroller.github.io/index1.html">Star layout</a>
-        <a id="layout2" href="https://officialtroller.github.io/index2.html">Nebula Eye layout</a>
-      </div>
-  <script>
-let points = [];
-let tickSpeed = 10;
-let base = 180;
-let numPoints = 10;
-let maxTicks = 3000;
-let ticks = 0;
-
-function Point(x = random(width), y = random(height), a = random(PI)) {
-  this.x = x;
-  this.y = y;
-  this.a = a;
-  this.dx = cos(a);
-  this.dy = sin(a);
-
-  this.hue = random(0, 0 + 30); // Von 0 (rot) bis 30 (orange)
-  this.color = color(this.hue, 100, 100, .01);
-}
-
-
-
-Point.prototype.update = function(){
-  this.x += this.dx;
-  this.y += this.dy;
-  if (this.x < 0 || this.x >= width) this.dx *= -1;
-  if (this.y < 0 || this.y >= height) this.dy *= -1;
-  stroke(this.color);
-  line(this.x, this.y, this.neighbor.x, this.neighbor.y);
-}
-
-function setup() {
-  createCanvas(windowWidth, windowHeight);
-  width = windowWidth;
-  height = windowHeight;
-  colorMode(HSB);
-  windowResized();
-  blendMode(ADD);
-  strokeWeight(1.5);
-  init();
-}
-
-function createCanvas() {
-  return createCanvas(windowWidth, windowHeight);
-}
-
-
-function init(){
-  points = [];
-  base = random(360);
-  ticks = 0;
-  
-  for (var i = 0; i < numPoints; i++) points.push(new Point());
-  
-  for (var i = 0; i < points.length; i++){
-    let j = i;
-    while(j == i) j = floor(random(points.length));
-    points[i].neighbor = points[j];
-  }
-}
-
-function draw(){
-  if (ticks > maxTicks) return;
-  for (var n = 0; n < tickSpeed; n++){
-    for (var i = 0; i < points.length; i++){
-      points[i].update();
-    }
-    ticks++;
-  }
-}
-/*
-function mouseClicked(){
-  windowResized();
-}*/
-
-function windowResized() {
-  resizeCanvas(windowWidth, windowHeight);
-  pixelDensity(1);
-  clear();
-  background(0);
-  init();
-}
-  </script>
+    <script src="src/js/index.js"></script>
 </body>
-</html>
 
+</html>

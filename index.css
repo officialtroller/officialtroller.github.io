@@ -1,0 +1,341 @@
+html,
+body {
+    height: 100%;
+    width: 100%;
+    top: 0;
+    position: absolute;
+    background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+@keyframes backgroundmove {
+    0% {
+        background-position: center top;
+    }
+
+    50% {
+        background-position: right bottom
+    }
+
+    100% {
+        background-position: left top;
+    }
+}
+
+.centered {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 10px;
+    margin: auto;
+}
+
+#logo {
+    margin-bottom: 10px;
+}
+
+.links {
+    display: flex;
+    position: absolute;
+    gap: 15px;
+    top: 220px;
+}
+
+.centered .links a {
+    text-decoration: none;
+    background-color: white;
+    border-radius: 30px;
+    width: 150px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    transition: all 0.2s linear;
+}
+
+
+.links1 {
+    position: relative;
+    flex-direction: row;
+    display: flex;
+    gap: 50px;
+    justify-content: center;
+    align-items: center;
+    top: 50%;
+    z-index: 1;
+}
+
+.dcbot {
+    position: relative;
+    height: 300px;
+    width: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    transition: transform 0.5s;
+    border-radius: 15px;
+    perspective: 1000px;
+    z-index: 2;
+}
+.front header {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+.ytapp {
+    position: relative;
+    height: 300px;
+    width: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    transition: transform 0.5s;
+    border-radius: 15px;
+    perspective: 1000px;
+    z-index: 2;
+}
+
+.ytapp:hover .flip-container {
+    transform: rotateY(180deg);
+}
+
+.flip-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.5s;
+}
+
+.dcbot:hover .flip-container {
+    transform: rotateY(180deg);
+}
+
+.front {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    flex-direction: column;
+    background: linear-gradient(to right, slateblue, lightblue);
+    border-radius: 15px;
+    z-index: 2;
+}
+
+.back {
+    position: absolute;
+    display: flex;
+    backface-visibility: hidden;
+    text-align: center;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, lightblue, slateblue);
+    border-radius: 15px;
+    padding-top: 5px;
+    transform: rotateY(180deg);
+    z-index: 10;
+}
+
+.back span {
+    margin-top: 5px;
+    font-size: 20px;
+}
+
+.back a {
+    position: absolute;
+    bottom: 10px;
+    text-decoration: none;
+    font-size: 16px;
+    color: inherit;
+    text-align: center;
+}
+
+.back p {
+    margin: 10px 4px;
+}
+
+.back img {
+    border-radius: 10px;
+    position: fixed;
+    z-index: 999999;
+    bottom: 50px;
+}
+
+.back img:hover {
+    transform: scale(2);
+}
+
+@keyframes bounce {
+    40% {
+        transform: translateY(-10px);
+    }
+
+    60% {
+        transform: translateY(-5px);
+    }
+
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
+        transform: translateY(0);
+    }
+}
+
+i {
+    margin: 0 8px;
+}
+
+#youtube {
+    color: red;
+}
+
+#youtube:hover {
+    box-shadow: 4px 4px 10px red;
+}
+
+#youtube:active {
+    transition: none;
+    box-shadow: inset 4px 4px 10px red;
+    transform: scale(0.97) translate(3px, 3px);
+}
+
+#github {
+    color: #24292e;
+}
+
+#github:hover {
+    box-shadow: 4px 4px 10px white;
+}
+
+#github:active {
+    transition: none;
+    box-shadow: inset 4px 4px 10px #24292e;
+    transform: scale(0.97) translate(3px, 3px);
+}
+
+#discord {
+    color: #566bb5;
+}
+
+#discord:hover {
+    box-shadow: 4px 4px 10px #566bb5;
+}
+
+#discord:active {
+    transition: none;
+    box-shadow: inset 4px 4px 10px #566bb5;
+    transform: scale(0.97) translate(3px, 3px);
+}
+
+#title span {
+    background: -webkit-linear-gradient(white, #38495a, white);
+    background-size: 200% 200%;
+    background-position: center top;
+    color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+    font-size: 70px;
+    font-family: "lato", sans-serif;
+    letter-spacing: 5px;
+    font-weight: 300;
+    top: 120px;
+    position: absolute;
+    animation: backgroundmove 7s linear infinite;
+    user-select: none;
+}
+
+#logo {
+    background-color: transparent;
+    top: 20px;
+    box-shadow: 0 0 10px white;
+    position: absolute;
+    user-select: none;
+    animation: logoanim 5s linear infinite;
+}
+
+@keyframes logoanim {
+    0% {
+        box-shadow: 0 0 10px white;
+    }
+
+    50% {
+        box-shadow: 0 0 20px white;
+    }
+
+    100% {
+        box-shadow: 0 0 10px white;
+    }
+}
+
+#stars {
+    width: 1px;
+    height: 1px;
+    background: transparent;
+    animation: animStar 50s linear infinite;
+}
+
+#stars:after {
+    content: " ";
+    position: absolute;
+    top: 2000px;
+    width: 1px;
+    height: 1px;
+    background: transparent;
+}
+
+#stars2 {
+    width: 2px;
+    height: 2px;
+    background: transparent;
+    animation: animStar 100s linear infinite;
+}
+
+#stars2:after {
+    content: " ";
+    position: absolute;
+    top: 2000px;
+    width: 2px;
+    height: 2px;
+    background: transparent;
+}
+
+#stars3 {
+    width: 3px;
+    height: 3px;
+    background: transparent;
+    animation: animStar 150s linear infinite;
+}
+
+#stars3:after {
+    content: " ";
+    position: absolute;
+    top: 2000px;
+    width: 3px;
+    height: 3px;
+    background: transparent;
+}
+
+@keyframes animStar {
+    from {
+        transform: translateY(0px);
+    }
+
+    to {
+        transform: translateY(-2000px);
+    }
+}
