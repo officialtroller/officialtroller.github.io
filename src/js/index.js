@@ -22,4 +22,7 @@ window.onload = function () {
         #stars3:after { box-shadow: ${document.getElementById('stars3').style.boxShadow}; }
     `;
     document.head.appendChild(style);
+    if (/(ipad|iphone|ipod|android)/gi.test(navigator.userAgent)) {
+        window.location.href = "/phone.html";
+    }
 };
