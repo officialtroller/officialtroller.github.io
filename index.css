@@ -1,3 +1,23 @@
+@font-face {
+    font-family: 'SBGlyphs';
+    src: url('https://starblast.data.neuronality.com/fonts/starblast-glyphs.ttf?v=1');
+    font-weight: normal;
+    font-style: normal
+}
+
+.ic {
+    display: inline-block;
+    font: normal normal normal 14px/1 SBGlyphs;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale
+}
+
+.ic-menu:before {
+    content: "\0042"
+}
+
 html,
 body {
     height: 100%;
@@ -338,4 +358,66 @@ i {
     to {
         transform: translateY(-2000px);
     }
+}
+
+#menu {
+    position: fixed;
+    right: 0;
+    top: 40px;
+    width: 50px;
+    height: 50px;
+    background-color: #f8f9fa;
+    box-shadow: -2px 0 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px 0 0 8px;
+    transition: all 0.3s ease-in-out;
+    overflow: hidden;
+    z-index: 1000;
+}
+
+#menu:hover {
+    width: 200px;
+    height: auto;
+    background-color: white;
+}
+
+.icon-container {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#menu i {
+    font-size: 20px;
+    color: #333;
+}
+
+.menucontent {
+    opacity: 0;
+    transform: translateX(20px);
+    transition: all 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+}
+
+#menu:hover .menucontent {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.menucontent a {
+    padding: 15px 20px;
+    color: #333;
+    text-decoration: none;
+    border-top: 1px solid #eee;
+    transition: background-color 0.2s ease;
+    display: flex;
+    align-items: center;
+    font-family: Arial, sans-serif;
+}
+
+.menucontent a:hover {
+    background-color: #f0f0f0;
+    color: #000;
 }
