@@ -1,0 +1,47 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auto Mod Bot</title>
+    <link rel="icon" type="image/png" href="../src/img/logo_round.png" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.8.0/gsap.min.js"></script>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div id="large-header" class="large-header">
+        <header>Auto Mod Discord Bot</header>
+        <p id="ezinfo">An powerful open-source discord bot.</p>
+        <div class="content">
+            <h1 class="contentheader">About</h1>
+            <p>This Bot started as a one file Bot. While coding a simple moderation bot for an big discord server this bot became more and more advanced. While programming the staff team gave me great ideas to implement.
+                One day the file became so big that i knew i couldn't leave the bot in one simple single file so i started creating handlers and functions for a better overview.</p>
+            <p>Basically this bot just blocks words that you can add to it's blacklist using simple commands. I knew just words wouldn't be enough so i added an advanced feature to add entire regexes to the bot, allowing you to block messages with weard content like websites.
+                To always inform other Staff member's, a log channel is required where when adding or removing a word/regex the bot logs it. Once a user sends content that is in the bots blacklist, the message gets deleted and the user gets kicked.
+            </p>
+            <br>
+            <p>This Bot uses Discord.JS V14, instead of using online databases to save data i made it easier for you and just added two text files where everything will be saved.</p>
+            <h1 class="contentheader">Get Started</h1>
+            <ol>
+                <li>Clone my public repository <span class="command">git clone https://github.com/officialtroller/automodbot.git</span></li>
+                <li>Run <span class="command">npm install</span> to install necessary node.js packages</li>
+                <li>Setup your <span class="command">.env</span> file correctly with bot-token, server id, bot id and your logging channel id</li>
+                <li>Open <span class="command">.\src\events\client</span>, check each file for comments and edit as needed!</li>
+            </ol>
+            <h1 class="contentheader">Commands</h1>
+            <ul>
+                <li><span class="command">/ban {name} {reason}</span> Usual ban command to ban a user from your server.</li>
+                <li><span class="command">/kick {user} {reason}</span> Usual kick command to kick a user from your server.</li>
+                <li><span class="command">/timeout {user} {reason} {duration}</span> Command lets you mute and unmute. To mute, duration must be given, in hour's. To unmute just use <span class="command">/timeout {user}</span></li>
+                <li><span class="command">/unban {userid}</span> needs the user id of the user you want to unban.</li>
+                <li><span class="command">/addword {word}</span> add a specific word to the blacklist.</li>
+                <li><span class="command">/removeword {word}</span> remove an existing word from the blacklist.</li>
+                <li><span class="command">/addregex {regex}</span> add a custom regex to the blacklist. Example: <span class="command">discord(?:.com|app.com|.gg)[/invite/]?(?:[a-zA-Z0-9-]{2,32})</span> blocks every type of discord invite's.</li>
+                <li><span class="command">/removeregex {regex}</span> remove an existing regex from the blacklist.</li>
+                <li><span class="command">/viewblocklist</span> sends a list of your current blacklist to your log channel</li>
+            </ul>
+        </div>
+        <canvas id="demo-canvas"></canvas>
+    </div>
+    <script src="src/index.js"></script>
+</body>
+</html>
