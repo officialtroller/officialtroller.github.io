@@ -117,7 +117,6 @@
         if (animateHeader) {
             ctx.clearRect(0, 0, width, height);
             points.forEach(point => {
-                // detect points in range
                 if (Math.abs(getDistance(target, point)) < 4000) {
                     point.active = 0.3;
                     point.circle.active = 0.6;
@@ -178,11 +177,6 @@
 
     function getDistance(p1, p2) {
         return Math.pow(p1.x - p2.x, 2) + Math.pow(p1.y - p2.y, 2);
-    }
-
-    
-    if (/(ipad|iphone|ipod|android)/gi.test(navigator.userAgent)) {
-        window.location.href = "/phone.html";
     }
 
 })();
