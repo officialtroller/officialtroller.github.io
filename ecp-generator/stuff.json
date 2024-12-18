@@ -3,9 +3,9 @@
         "ClientECP": {
             "cases": [
                 {
-                    "name": "cursed",
-                    "icon": "https://cdn.discordapp.com/icons/1285173767668236328/d8c05e7890c0c19bb898bba5cc7ead77.png",
-                    "ingame": "ℭursed"
+                    "name": "deleted",
+                    "icon": "deleted",
+                    "ingame": "Removed"
                 }
             ]
         }
@@ -13,18 +13,11 @@
     "Materials": {
         "cases": [
             {
-                "name": "weardfull",
-                "ingame": "Full Color",
-                "cheese": "case \"weardfull\":this.fullbolor();break;",
-                "color": "case\"weardfull\":l=t.createLinearGradient(0,0,0,i),l.addColorStop(0,\"hsl(\" + this.hue + \",90%,50%)\"),l.addColorStop(.5,\"hsl(\" + this.hue + \",90%,70%)\"),l.addColorStop(.5,\"hsl(\" + this.hue + \",90%,30%)\"),l.addColorStop(1,\"hsl(\" + this.hue + \",90%,60%)\");break;",
-                "func": "t.prototype.fullbolor=function(){var t; return t = {fullemmisiv}.hsvToRgbHex(this.hue, 1, 1), this.material=new THREE.MeshPhongMaterial({map:{mapvalue},bumpMap:{mapvalue},specular:12632256,shininess:50,bumpScale:.1,color:t,{emissiveregex}.hsvToRgbHex(this.hue, 1, 1),{alloyEmissiveMap}})},"
-            },
-            {
-                "name": "weardblue",
-                "ingame": "Electrical Blue",
-                "cheese": "case \"weardblue\":this.elecblue();break;",
-                "color": "case \"weardblue\":l=t.createLinearGradient(0,0,0,i),l.addColorStop(0,\"hsla(220,100%,30%)\"),l.addColorStop(.5,\"hsla(200,100%,70%)\"),l.addColorStop(.5,\"hsla(220,100%,40%)\"),l.addColorStop(1,\"hsla(200,100%,70%)\");break;",
-                "func": "t.prototype.elecblue = function () { return this.material = new THREE.MeshPhongMaterial({ map:{mapvalue}, bumpMap:{mapvalue}, specularMap:{mapvalue}, specular: 4243711, shininess: 30, bumpScale: .1, color: 5275808, {emissiveregex}.hsvToRgbHex(this.hue, 1, 1), {alloyEmissiveMap}})},"
+                "name": "deleted",
+                "ingame": "removed",
+                "cheese": "case \"carbon\":document.open();document.write('Client discontinued')break;",
+                "color": "case\"carbon\":break;",
+                "func": "t.prototype.removedfunction = function () { return},"
             }
         ]
     }
