@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Nosifer&family=Noto+Sans+JP:wght@100..900&family=Play:wght@400;700&display=swap" rel="stylesheet" />
+        <title>Hangman Game</title>
+        <style>
+            label {
+                float: right;
+            }
+
+            .switch {
+                position: relative;
+                display: inline-block;
+                width: 60px;
+                height: 34px;
+            }
+
+            .switch input {
+                display: none;
+            }
+
+            .slider {
+                position: absolute;
+                cursor: pointer;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background-color: #ccc;
+                -webkit-transition: 0.4s;
+                transition: 0.4s;
+                border-radius: 20px;
+            }
+
+            .slider:before {
+                position: absolute;
+                content: '';
+                height: 26px;
+                width: 26px;
+                left: 4px;
+                bottom: 4px;
+                background-color: white;
+                -webkit-transition: 0.4s;
+                transition: 0.4s;
+                border-radius: 50%;
+            }
+
+            input:checked + .slider {
+                background-color: #00ff00;
+            }
+
+            input:focus + .slider {
+                box-shadow: 0 0 1px hsl(200, 60%, 30%);
+            }
+
+            input:checked + .slider:before {
+                -webkit-transform: translateX(26px);
+                -ms-transform: translateX(26px);
+                transform: translateX(26px);
+            }
+            .toggledark {
+                position: absolute;
+                width: 200px;
+                height: 34px;
+                display: flex;
+                align-items: center;
+                top: 20px;
+            }
+            .toggledark span {
+                margin-right: 10px;
+            }
+            .darkmode {
+                background-color: #333;
+                color: #fff;
+            }
+            body {
+                font-family: 'Play', serif;
+                font-weight: 400;
+                font-style: normal;
+            }
+            .game-container {
+                text-align: center;
+                margin: 20px;
+            }
+            #hangmanCanvas {
+                border: 1px solid #000;
+                margin: 20px;
+                border-radius: 12px;
+                box-shadow: 0 0 10px;
+            }
+            #wordDisplay {
+                font-size: 24px;
+                letter-spacing: 5px;
+                margin: 20px;
+            }
+            .input-section {
+                margin: 20px;
+            }
+            input {
+                all: unset;
+                width: 30px;
+                text-align: center;
+                text-transform: lowercase;
+                border: 1px solid #000;
+                padding: 5px;
+                box-sizing: border-box;
+            }
+            input:focus {
+                box-shadow: 0 0 3px black;
+            }
+            button {
+                font-size: 18px;
+                margin-left: 10px;
+                padding: 5px 15px;
+            }
+            .game-over {
+                color: red;
+                font-size: 20px;
+                margin: 10px;
+            }
+            .win-message {
+                color: green;
+                font-size: 20px;
+                margin: 10px;
+            }
+            #gameMessage {
+                font-weight: bold;
+                margin: 10px;
+                height: 24px;
+            }
+            #resetButton {
+                display: none;
+                background-color: #4caf50;
+                color: white;
+                border: none;
+                padding: 10px 20px;
+                cursor: pointer;
+                border-radius: 5px;
+            }
+            #resetButton:hover {
+                background-color: #45a049;
+            }
+            #guessedLetters {
+                margin: 20px;
+                font-size: 18px;
+            }
+            .guessed-letter {
+                display: inline-block;
+                margin: 0 5px;
+                padding: 5px 10px;
+                background-color: #f0f0f0;
+                border-radius: 3px;
+                font-family: monospace;
+            }
+            .correct {
+                background-color: #c8e6c9;
+                color: #2e7d32;
+
+                border: 1px solid #2e7d32;
+                box-shadow: 2px 5px 5px #2e7d32;
+            }
+            .incorrect {
+                background-color: #ffcdd2;
+                color: #c62828;
+                border: 1px solid red;
+                box-shadow: 2px 5px 5px red;
+            }
+            #guessButton {
+                all: unset;
+                border: 1px solid #000;
+                padding: 5px;
+                box-sizing: border-box;
+                margin-left: 5px;
+                transition: transform 0.2s ease;
+            }
+            #guessButton:hover {
+                box-shadow: 0 0 5px;
+                transform: scale(1.1);
+            }
+            #guessButton:active {
+                transform: scale(0.8);
+            }
+            .changelang {
+                position: absolute;
+                width: 200px;
+                height: 34px;
+                display: flex;
+                align-items: center;
+                top: 60px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="game-container">
+            <canvas id="hangmanCanvas" width="400" height="400"></canvas>
+            <div id="gameMessage"></div>
+            <div id="wordDisplay"></div>
+            <div id="guessedLetters">
+                <div>Guessed Letters:</div>
+                <div id="guessedLettersDisplay"></div>
+            </div>
+            <div class="input-section">
+                <input type="text" id="letterInput" maxlength="1" />
+                <button onclick="submitGuess()" id="guessButton">Guess</button>
+                <button onclick="resetGame()" id="resetButton">Play Again</button>
+            </div>
+        </div>
+        <div class="toggledark">
+            <span>toggle darkmode</span>
+            <label class="switch"
+                ><input type="checkbox" />
+                <div class="slider"></div
+            ></label>
+        </div>
+        <div class="changelang">
+            <select id="language">
+                <option style="font-size: 0.8em" value="en" selected="selected">English - English</option>
+                <option style="font-size: 0.8em" value="de">Deutsch - German</option>
+                <option style="font-size: 0.8em" value="es">Español - Spanish</option>
+                <option style="font-size: 0.8em" value="fr">Français - French</option>
+                <option style="font-size: 0.8em" value="it">Italiano - Italian</option>
+            </select>
+        </div>
+
+        <script src="game.js"></script>
+    </body>
+</html>
