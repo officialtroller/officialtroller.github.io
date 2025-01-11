@@ -453,8 +453,8 @@ let ECPIcons = {
 };
 
 for (let key of Object.keys(ECPIcons)) {
-    if (ECPIcons[key].name === 'troller') continue;
-    if (ECPIcons[key].name === 'dmcult') continue;
+    if (ECPIcons[key].id === 'troller') continue;
+    if (ECPIcons[key].id === 'dmcult') continue;
     if (ECPIcons[key].url) {
         ECPIcons[key].url = `https://starblast.io/ecp/${ECPIcons[key].url}`;
     }
