@@ -42,6 +42,12 @@ window.initECPSetup = function (initializer) {
                         case 'zinc':
                             (l = t.createLinearGradient(0, 0, 0, i)), l.addColorStop(0, '#EEE'), l.addColorStop(1, '#666');
                             break;
+                        case 'weardfull':
+                            (l = t.createLinearGradient(0, 0, 0, i)), l.addColorStop(0, 'hsl(' + this.hue + ',90%,50%)'), l.addColorStop(0.5, 'hsl(' + this.hue + ',90%,70%)'), l.addColorStop(0.5, 'hsl(' + this.hue + ',90%,30%)'), l.addColorStop(1, 'hsl(' + this.hue + ',90%,60%)');
+                            break;
+                        case 'weardblue':
+                            (l = t.createLinearGradient(0, 0, 0, i)), l.addColorStop(0, 'hsla(220,100%,30%)'), l.addColorStop(0.5, 'hsla(200,100%,70%)'), l.addColorStop(0.5, 'hsla(220,100%,40%)'), l.addColorStop(1, 'hsla(200,100%,70%)');
+                            break;
                         default:
                             (l = t.createLinearGradient(0, 0, 0, i)), l.addColorStop(0, 'hsl(0,100%,80%)'), l.addColorStop(0.5, 'hsl(60,100%,80%)'), l.addColorStop(0.5, 'hsl(120,100%,80%)'), l.addColorStop(1, 'hsl(180,100%,80%)');
                     }
