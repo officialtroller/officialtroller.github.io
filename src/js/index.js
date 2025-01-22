@@ -22,7 +22,22 @@ window.onload = function () {
         #stars3:after { box-shadow: ${document.getElementById('stars3').style.boxShadow}; }
     `;
     document.head.appendChild(style);
-    if (/(ipad|iphone|ipod|android)/gi.test(navigator.userAgent)) {
-        window.location.href = "/phone.html";
-    }
+    const imgs = document.querySelectorAll('.back img');
+
+    imgs.forEach(img => {
+        img.addEventListener('mousemove', e => {
+            const rect = img.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+
+            const rotateY = (x / rect.width - 0.5) * 60;
+            const rotateX = (y / rect.height - 0.5) * -60;
+
+            img.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(2)`;
+        });
+
+        img.addEventListener('mouseleave', () => {
+            img.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)';
+        });
+    });
 };
