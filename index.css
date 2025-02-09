@@ -480,3 +480,142 @@ i {
     opacity: 1;
     visibility: visible;
 }
+
+@media screen and (max-width: 768px) {
+    html,
+    body {
+        overflow-y: auto !important;
+        height: 100%;
+        position: relative;
+        background: #1b2735; /* Solid background instead of gradient */
+    }
+
+    /* Remove star animations for mobile */
+    #stars,
+    #stars2,
+    #stars3,
+    #stars:after,
+    #stars2:after,
+    #stars3:after {
+        display: none;
+    }
+
+    .centered {
+        position: relative;
+        z-index: 2;
+    }
+
+    #title {
+        position: relative;
+        margin-top: 20px;
+        height: auto;
+        padding-bottom: 200px;
+    }
+
+    #title span {
+        font-size: 40px;
+        letter-spacing: 2px;
+        position: relative;
+        top: 20px;
+        margin-bottom: 60px;
+        animation: none; /* Remove background animation */
+        background: linear-gradient(white, #38495a, white);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+    }
+
+    #logo {
+        height: 80px !important;
+        width: 80px !important;
+        position: relative;
+        top: 0;
+        margin-bottom: 20px;
+    }
+
+    .links {
+        flex-direction: column;
+        position: relative;
+        top: 0;
+        gap: 15px;
+        width: 100%;
+        align-items: center;
+        margin-top: 30px;
+    }
+
+    .centered .links a {
+        width: 200px;
+        height: 50px;
+        font-size: 18px;
+    }
+
+    .links1 {
+        flex-direction: column;
+        gap: 30px;
+        position: relative;
+        top: 0;
+        margin: 40px 0;
+        width: 100%;
+    }
+
+    .dcbot,
+    .ytapp {
+        width: 90%;
+        max-width: 300px;
+        height: 280px;
+        margin: 0 auto;
+    }
+
+    .flip-container {
+        transform-origin: center;
+    }
+
+    .dcbot:hover .flip-container,
+    .ytapp:hover .flip-container {
+        transform: rotateY(180deg) translateX(0);
+    }
+
+    .front,
+    .back {
+        left: 0;
+        right: 0;
+        margin: auto;
+        padding: 15px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    #menu {
+        top: 10px;
+        width: 40px;
+        height: 40px;
+        z-index: 1000;
+    }
+
+    .icon-container {
+        width: 40px;
+        height: 40px;
+    }
+
+    #menu:hover {
+        width: 180px;
+    }
+
+    .menucontent a {
+        padding: 12px 15px;
+        font-size: 14px;
+    }
+}
+
+/* Add additional styles for very small screens */
+@media screen and (max-width: 320px) {
+    #title span {
+        font-size: 32px;
+    }
+
+    .centered .links a {
+        width: 180px;
+        height: 45px;
+        font-size: 16px;
+    }
+}
