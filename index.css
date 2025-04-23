@@ -124,6 +124,24 @@ body {
     transform: rotateY(180deg);
 }
 
+.sblauncher {
+    position: relative;
+    height: 300px;
+    width: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    transition: transform 0.5s;
+    border-radius: 15px;
+    perspective: 1000px;
+    z-index: 2;
+}
+
+.sblauncher:hover .flip-container {
+    transform: rotateY(180deg);
+}
+
 .flip-container {
     position: relative;
     width: 100%;
@@ -487,10 +505,9 @@ i {
         overflow-y: auto !important;
         height: 100%;
         position: relative;
-        background: #1b2735; /* Solid background instead of gradient */
+        background: #1b2735;
     }
 
-    /* Remove star animations for mobile */
     #stars,
     #stars2,
     #stars3,
@@ -607,7 +624,6 @@ i {
     }
 }
 
-/* Add additional styles for very small screens */
 @media screen and (max-width: 320px) {
     #title span {
         font-size: 32px;
