@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Message Flags Calculator</title>
+    
+    <!-- Meta tags for social media embeds -->
+    <meta name="description" content="Calculate and decode Discord message flags with ease. Convert between individual flags and combined numeric values using bitwise operations.">
+    <meta name="keywords" content="discord, message flags, bitwise calculator, flag decoder, discord api, programming tools">
+    <meta name="author" content="Message Flags Calculator">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="">
+    <meta property="og:title" content="🚩 Message Flags Calculator">
+    <meta property="og:description" content="Calculate and decode Discord message flags with ease. Convert between individual flags and combined numeric values using bitwise operations.">
+    <meta property="og:image" content="">
+    <meta property="og:site_name" content="Message Flags Calculator">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="">
+    <meta property="twitter:title" content="🚩 Message Flags Calculator">
+    <meta property="twitter:description" content="Calculate and decode Discord message flags with ease. Convert between individual flags and combined numeric values using bitwise operations.">
+    <meta property="twitter:image" content="">
+    
+    <!-- Additional meta tags -->
+    <meta name="theme-color" content="#667eea">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="">
+    
+    <!-- Favicon (you can add your own favicon URL) -->
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🚩</text></svg>">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .calculator-section {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(102, 126, 234, 0.1);
+        }
+
+        h2 {
+            color: #444;
+            margin-bottom: 20px;
+            font-size: 1.4em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .flag-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .flag-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px;
+            background: linear-gradient(135deg, #f8f9ff, #e8f2ff);
+            border-radius: 10px;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .flag-item:hover {
+            border-color: #667eea;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.2);
+        }
+
+        .flag-item input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            accent-color: #667eea;
+        }
+
+        .flag-item label {
+            cursor: pointer;
+            font-weight: 500;
+            color: #333;
+            flex: 1;
+        }
+
+        .flag-value {
+            font-family: 'Courier New', monospace;
+            background: #667eea;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-size: 0.9em;
+            font-weight: bold;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #444;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e1e5e9;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+            font-family: 'Courier New', monospace;
+        }
+
+        .input-group input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .result-display {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 20px;
+            font-family: 'Courier New', monospace;
+            font-size: 1.2em;
+            font-weight: bold;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.3);
+            position: relative;
+        }
+
+        .copy-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 6px 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.75em;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .copy-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: translateY(-2px);
+        }
+
+        .copy-btn:active {
+            transform: translateY(0);
+        }
+
+        .copy-btn.copied {
+            background: rgba(76, 175, 80, 0.3);
+            border-color: rgba(76, 175, 80, 0.5);
+        }
+
+        .binary-display {
+            background: rgba(0, 0, 0, 0.1);
+            padding: 10px;
+            border-radius: 8px;
+            margin-top: 10px;
+            font-size: 0.9em;
+            word-break: break-all;
+        }
+
+        .decode-result {
+            margin-top: 15px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            text-align: left;
+        }
+
+        .decode-result h4 {
+            margin-bottom: 10px;
+            font-size: 1em;
+        }
+
+        .decode-result ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .decode-result li {
+            padding: 5px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .decode-result li:last-child {
+            border-bottom: none;
+        }
+
+        .icon {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 2em;
+            }
+            
+            .flag-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚩 Message Flags Calculator</h1>
+        
+        <div class="calculator-section">
+            <h2>
+                <svg class="icon" viewBox="0 0 24 24">
+                    <path d="M9 11H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2zm2-7h-1V2h-2v2H8V2H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11z"/>
+                </svg>
+                Flag Calculator
+            </h2>
+            
+            <div class="flag-grid" id="flagGrid">
+                <!-- Common message flags will be populated here -->
+            </div>
+            
+            <div class="result-display" id="calculatorResult">
+                Total Value: 0
+                <button class="copy-btn" onclick="copyToClipboard('calculator')" id="copyBtnCalculator">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
+                    </svg>
+                    Copy
+                </button>
+                <div class="binary-display" id="binaryDisplay">Binary: 0</div>
+            </div>
+        </div>
+        
+        <div class="calculator-section">
+            <h2>
+                <svg class="icon" viewBox="0 0 24 24">
+                    <path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/>
+                </svg>
+                Flag Decoder
+            </h2>
+            
+            <div class="input-group">
+                <label for="flagInput">Enter flag value to decode:</label>
+                <input type="number" id="flagInput" placeholder="Enter numeric flag value..." min="0">
+            </div>
+            
+            <div class="result-display" id="decoderResult" style="display: none;">
+                <button class="copy-btn" onclick="copyToClipboard('decoder')" id="copyBtnDecoder">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
+                    </svg>
+                    Copy
+                </button>
+                <div class="decode-result" id="decodeDetails"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const messageFlags = {
+            'CROSSPOSTED': 1,
+            'IS_CROSSPOST': 2,
+            'SUPPRESS_EMBEDS': 4,
+            'SOURCE_MESSAGE_DELETED': 8,
+            'URGENT': 16,
+            'HAS_THREAD': 32,
+            'EPHEMERAL': 64,
+            'LOADING': 128,
+            'FAILED_TO_MENTION_SOME_ROLES_IN_THREAD': 256,
+            'SUPPRESS_NOTIFICATIONS': 4096,
+            'IS_VOICE_MESSAGE': 8192,
+            'HAS_SNAPSHOT': 16384,
+            'IS_COMPONENTS_V2': 32768
+        };
+
+        let currentFlags = 0;
+
+        function initializeFlagGrid() {
+            const flagGrid = document.getElementById('flagGrid');
+            
+            Object.entries(messageFlags).forEach(([name, value]) => {
+                const flagItem = document.createElement('div');
+                flagItem.className = 'flag-item';
+                
+                flagItem.innerHTML = `
+                    <input type="checkbox" id="flag_${value}" onchange="toggleFlag(${value})">
+                    <label for="flag_${value}">${name.replace(/_/g, ' ')}</label>
+                    <span class="flag-value">${value}</span>
+                `;
+                
+                flagGrid.appendChild(flagItem);
+            });
+        }
+
+        function toggleFlag(flagValue) {
+            const checkbox = document.getElementById(`flag_${flagValue}`);
+            
+            if (checkbox.checked) {
+                currentFlags |= flagValue;
+            } else {
+                currentFlags &= ~flagValue;
+            }
+            
+            updateCalculatorResult();
+        }
+
+        function updateCalculatorResult() {
+            const resultDiv = document.getElementById('calculatorResult');
+            const binaryDiv = document.getElementById('binaryDisplay');
+            const copyBtn = document.getElementById('copyBtnCalculator');
+            
+            resultDiv.innerHTML = `Total Value: ${currentFlags}`;
+            binaryDiv.innerHTML = `Binary: ${currentFlags.toString(2).padStart(16, '0')}`;
+            
+            resultDiv.appendChild(copyBtn);
+            resultDiv.appendChild(binaryDiv);
+        }
+
+        function copyToClipboard(type) {
+            let textToCopy = '';
+            let buttonId = '';
+            
+            if (type === 'calculator') {
+                textToCopy = currentFlags.toString();
+                buttonId = 'copyBtnCalculator';
+            } else if (type === 'decoder') {
+                const flagInput = document.getElementById('flagInput');
+                textToCopy = flagInput.value || '0';
+                buttonId = 'copyBtnDecoder';
+            }
+            
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                const button = document.getElementById(buttonId);
+                const originalContent = button.innerHTML;
+                
+                button.classList.add('copied');
+                button.innerHTML = `
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                    </svg>
+                    Copied!
+                `;
+                
+                setTimeout(() => {
+                    button.classList.remove('copied');
+                    button.innerHTML = originalContent;
+                }, 2000);
+            }).catch(err => {
+                console.error('Failed to copy: ', err);
+                const textArea = document.createElement('textarea');
+                textArea.value = textToCopy;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+            });
+        }
+
+        function decodeFlags(flagValue) {
+            const activeFlags = [];
+            
+            Object.entries(messageFlags).forEach(([name, value]) => {
+                if (flagValue & value) {
+                    activeFlags.push({name: name.replace(/_/g, ' '), value: value});
+                }
+            });
+            
+            return activeFlags;
+        }
+
+        function updateDecoder() {
+            const input = document.getElementById('flagInput');
+            const resultDiv = document.getElementById('decoderResult');
+            const detailsDiv = document.getElementById('decodeDetails');
+            
+            if (input.value === '') {
+                resultDiv.style.display = 'none';
+                return;
+            }
+            
+            const flagValue = parseInt(input.value) || 0;
+            const activeFlags = decodeFlags(flagValue);
+            
+            resultDiv.style.display = 'block';
+            
+            let detailsHTML = `
+                <h4>Decoded Flags for: ${flagValue}</h4>
+                <div class="binary-display">Binary: ${flagValue.toString(2).padStart(16, '0')}</div>
+            `;
+            
+            if (activeFlags.length > 0) {
+                detailsHTML += '<ul>';
+                activeFlags.forEach(flag => {
+                    detailsHTML += `<li>${flag.name} (${flag.value})</li>`;
+                });
+                detailsHTML += '</ul>';
+            } else {
+                detailsHTML += '<p>No flags are set (value is 0 or contains unknown flags)</p>';
+            }
+            
+            detailsDiv.innerHTML = detailsHTML;
+        }
+
+        document.getElementById('flagInput').addEventListener('input', updateDecoder);
+
+        initializeFlagGrid();
+        updateCalculatorResult();
+    </script>
+</body>
+</html>
